@@ -121,7 +121,7 @@ export default function Home() {
         </div>
 
         <section className="mt-12">
-          <h2 className="text-base font-semibold leading-6 text-zinc-900">Agents</h2>
+          <h2 className="text-base font-semibold leading-6 text-zinc-900">Markets</h2>
           <div className="mt-3 divide-y divide-zinc-200 border-y border-zinc-200">
             {agents.map((agent) => (
               <button
