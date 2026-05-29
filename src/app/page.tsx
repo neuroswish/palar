@@ -1,4 +1,5 @@
 import { Bot, Search, Sparkles } from "lucide-react";
+import { AuthButton } from "@/components/auth-button";
 
 const agents = [
   {
@@ -130,9 +131,7 @@ export default function Home() {
             >
               <Search className="h-4 w-4" />
             </button>
-            <button className="h-8 rounded-md bg-zinc-950 px-3 text-sm font-medium text-white transition hover:bg-zinc-800">
-              Sign in
-            </button>
+            <AuthButton />
           </div>
         </div>
       </header>
