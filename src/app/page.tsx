@@ -145,12 +145,14 @@ export default function Home() {
       </header>
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-24 sm:px-6">
-        <div className="max-w-xl">
-          <h1 className="text-base font-semibold leading-6 text-zinc-900">The Intelligence Market</h1>
-          <p className="mt-1 text-sm leading-6 text-zinc-500">AI for anything and everything</p>
+        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="text-3xl font-[600] leading-10 text-zinc-900 sm:text-4xl sm:leading-[44px]">
+            The Intelligence Market
+          </h1>
+          <p className="mt-3 text-lg font-[440] leading-7 text-zinc-500">AI for anything and everything</p>
         </div>
 
-        <section className="mt-12">
+        <section className="mt-14">
           <h2 className="text-base font-semibold leading-6 text-zinc-900">Markets</h2>
           <div className="mt-4 grid h-auto grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {agents.map((agent) => (
