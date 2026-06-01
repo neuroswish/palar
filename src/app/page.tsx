@@ -98,7 +98,7 @@ function AgentCard({ agent }: { agent: (typeof agents)[number] }) {
         <div className="flex min-w-0 flex-1 gap-3">
           <div className="flex min-h-[38px] min-w-0 flex-1 flex-col justify-center">
             <div className="flex min-w-0 items-center gap-2">
-              <h3 className="line-clamp-2 text-[15px] font-semibold leading-[18px] text-zinc-950">
+              <h3 className="line-clamp-2 text-[15px] font-[600] leading-[18px] text-zinc-950">
                 {agent.name}
               </h3>
               {agent.badge ? (
@@ -111,11 +111,11 @@ function AgentCard({ agent }: { agent: (typeof agents)[number] }) {
         </div>
       </div>
 
-      <p className="px-3 pt-4 text-sm leading-5 text-zinc-500">{agent.description}</p>
+      <p className="px-3 pt-4 text-sm font-[440] leading-5 text-zinc-500">{agent.description}</p>
 
       <div className="mt-auto flex items-end justify-between gap-3 px-3 pb-3 pt-5">
-        <p className="text-sm font-medium text-zinc-500">{agent.price}</p>
-        <p className="text-xs font-semibold tracking-wider text-zinc-400">{agent.category}</p>
+        <p className="text-sm font-[440] text-zinc-500">{agent.price}</p>
+        <p className="text-xs font-[500] text-zinc-400">{agent.category}</p>
       </div>
     </button>
   );

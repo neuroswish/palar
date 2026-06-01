@@ -21,6 +21,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
+  font-feature-settings: "liga" 1, "calt" 1, "cv01" 1, "cv02" 1, "cv03" 1, "cv04" 1, "cv09" 0, "cv11" 1;
   text-rendering: geometricPrecision;
 }
 
