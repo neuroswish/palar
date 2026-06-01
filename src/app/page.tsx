@@ -2,7 +2,20 @@ import Image from "next/image";
 import { Search, Sparkles } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 
-const agents = [
+type Agent = {
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  accent: string;
+  avatar: string;
+  badge?: string;
+  image?: string;
+  imageAlt?: string;
+  emoji?: string;
+};
+
+const agents: Agent[] = [
   {
     name: "Find new Kith sneakers",
     description: "Search stores across NYC for new Kith inventory",
@@ -14,37 +27,43 @@ const agents = [
     imageAlt: "Kith logo",
   },
   {
-    name: "Strategy Proposer",
-    description: "Evaluates whether work is worth doing for automated organizations.",
+    name: "Cheapest Knicks tickets",
+    description: "Instantly get the cheapest Knicks tickets for a particular section across all platforms",
     price: "$0.025/1k tokens",
-    category: "productivity",
-    accent: "from-[#54d2ff] via-[#6658ff] to-[#111827]",
-    avatar: "burst",
-  },
-  {
-    name: "Wisp",
-    description: "Design system tokens, patterns, and implementation guidance.",
-    price: "$0.015/1k tokens",
-    category: "design",
-    badge: "AT COST",
+    category: "Sports",
     accent: "from-white to-zinc-50",
-    avatar: "wisp",
+    avatar: "image",
+    image: "/logos/knicks-facebook.jpg",
+    imageAlt: "New York Knicks logo",
   },
   {
-    name: "jacob",
-    description: "Zero to production in one session.",
-    price: "$0.02/1k tokens",
-    category: "code",
-    accent: "from-white to-amber-50",
-    avatar: "sun",
+    name: "Sell my Watch",
+    description: "List your watch or jewelry across all marketplaces and find the best offers",
+    price: "$0.015/1k tokens",
+    category: "Fashion",
+    accent: "from-white to-zinc-50",
+    avatar: "image",
+    image: "/logos/rolex-facebook.jpg",
+    imageAlt: "Rolex logo",
   },
   {
-    name: "Prereq",
-    description: "Dialectical counterweight to coherence bias.",
+    name: "Design Review",
+    description: "Professional design feedback and implementation for your website or deck",
     price: "$0.02/1k tokens",
-    category: "productivity",
-    accent: "from-zinc-900 to-zinc-500",
-    avatar: "portrait",
+    category: "Design",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "👀",
+  },
+  {
+    name: "Fantasy Football Betting Pool",
+    description: "Create a secure portal for your friends to put money and bet on fantasy football",
+    price: "$0.02/1k tokens",
+    category: "Fun & Games",
+    accent: "from-white to-zinc-50",
+    avatar: "image",
+    image: "/logos/nfl-facebook.jpg",
+    imageAlt: "NFL logo",
   },
   {
     name: "Jack Butcher",
@@ -61,11 +80,13 @@ function AgentAvatar({
   avatar,
   image,
   imageAlt,
+  emoji,
 }: {
   accent: string;
   avatar: string;
   image?: string;
   imageAlt?: string;
+  emoji?: string;
 }) {
   return (
     <div
@@ -74,6 +95,7 @@ function AgentAvatar({
       {avatar === "image" && image ? (
         <Image className="object-contain" src={image} alt={imageAlt ?? ""} fill sizes="38px" />
       ) : null}
+      {avatar === "emoji" && emoji ? <span className="text-xl leading-none">{emoji}</span> : null}
       {avatar === "dot" ? <span className="h-5 w-5 rounded-full bg-[#090b18]" /> : null}
       {avatar === "burst" ? (
         <>
@@ -100,7 +122,7 @@ function AgentAvatar({
   );
 }
 
-function AgentCard({ agent }: { agent: (typeof agents)[number] }) {
+function AgentCard({ agent }: { agent: Agent }) {
   return (
     <button className="group/card relative flex h-full min-h-[180px] w-full flex-col justify-between overflow-hidden rounded-xl border border-[#e9e8e3] bg-white pt-3 text-left shadow-md shadow-black/[0.04] transition hover:-translate-y-px hover:border-[#deddd7] hover:shadow-md hover:shadow-black/[0.08]">
       <div className="relative flex w-full items-start gap-2 px-3">
@@ -109,6 +131,7 @@ function AgentCard({ agent }: { agent: (typeof agents)[number] }) {
           avatar={agent.avatar}
           image={agent.image}
           imageAlt={agent.imageAlt}
+          emoji={agent.emoji}
         />
         <div className="flex min-w-0 flex-1 gap-3">
           <div className="flex min-h-[38px] min-w-0 flex-1 flex-col justify-center">
