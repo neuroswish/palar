@@ -10,7 +10,7 @@ const agents = [
     category: "Shopping",
     accent: "from-white to-zinc-50",
     avatar: "image",
-    image: "/logos/kith.svg",
+    image: "/logos/kith-app-icon.jpg",
     imageAlt: "Kith logo",
   },
   {
