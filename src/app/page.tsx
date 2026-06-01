@@ -127,10 +127,10 @@ export default function Home() {
       <header className="fixed inset-x-0 top-0 z-10 border-b border-transparent bg-[#fafafa]/80 backdrop-blur">
         <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-2">
-            <div className="grid h-7 w-7 place-items-center rounded-md border border-[#e9e8e3] bg-white">
-              <span className="text-base leading-none" aria-hidden="true">🧠</span>
+            <div className="grid h-8 w-8 place-items-center rounded-md border border-[#e9e8e3] bg-white">
+              <span className="text-lg leading-none" aria-hidden="true">🧠</span>
             </div>
-            <span className="text-sm font-semibold tracking-normal">Palares</span>
+            <span className="text-base font-semibold tracking-normal">Palares</span>
           </div>
           <div className="flex items-center gap-2">
             <button
