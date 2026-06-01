@@ -145,7 +145,7 @@ export default function Home() {
       </header>
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-24 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-2xl py-8 text-center sm:py-10">
           <h1 className="text-3xl font-[600] leading-10 text-zinc-900 sm:text-4xl sm:leading-[44px]">
             The Intelligence Market
           </h1>
