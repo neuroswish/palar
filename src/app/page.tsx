@@ -62,27 +62,27 @@ function AgentAvatar({
 }) {
   return (
     <div
-      className={`relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#ecece7] bg-gradient-to-br ${accent}`}
+      className={`relative flex h-[38px] w-[38px] shrink-0 items-center justify-center overflow-hidden rounded-sm border border-[#ecece7] bg-gradient-to-br ${accent}`}
     >
-      {avatar === "dot" ? <span className="h-6 w-6 rounded-full bg-[#090b18]" /> : null}
+      {avatar === "dot" ? <span className="h-5 w-5 rounded-full bg-[#090b18]" /> : null}
       {avatar === "burst" ? (
         <>
-          <span className="absolute h-12 w-12 rounded-full border border-white/70" />
-          <span className="absolute h-8 w-8 rounded-full border border-cyan-100/80" />
-          <Sparkles className="h-5 w-5 text-white" strokeWidth={1.6} />
+          <span className="absolute h-[38px] w-[38px] rounded-full border border-white/70" />
+          <span className="absolute h-7 w-7 rounded-full border border-cyan-100/80" />
+          <Sparkles className="h-4 w-4 text-white" strokeWidth={1.6} />
         </>
       ) : null}
       {avatar === "wisp" ? <span className="text-sm font-semibold text-zinc-400">∞</span> : null}
       {avatar === "sun" ? (
-        <span className="h-6 w-6 rounded-full border-4 border-amber-300 bg-zinc-950 shadow-[0_0_0_2px_rgba(250,204,21,0.25)]" />
+        <span className="h-5 w-5 rounded-full border-4 border-amber-300 bg-zinc-950 shadow-[0_0_0_2px_rgba(250,204,21,0.25)]" />
       ) : null}
       {avatar === "portrait" ? (
-        <span className="grid h-9 w-9 place-items-center rounded bg-zinc-100 text-xs font-bold text-zinc-900">
+        <span className="grid h-7 w-7 place-items-center rounded bg-zinc-100 text-xs font-bold text-zinc-900">
           P
         </span>
       ) : null}
       {avatar === "tiny" ? (
-        <span className="grid h-7 w-7 place-items-center rounded-sm bg-zinc-900 text-[10px] font-bold text-white">
+        <span className="grid h-6 w-6 place-items-center rounded-sm bg-zinc-900 text-[9px] font-bold text-white">
           JB
         </span>
       ) : null}
@@ -92,22 +92,30 @@ function AgentAvatar({
 
 function AgentCard({ agent }: { agent: (typeof agents)[number] }) {
   return (
-    <button className="grid w-full grid-cols-[48px_1fr] gap-4 rounded-lg border border-[#e9e8e3] bg-white p-4 text-left shadow-sm shadow-zinc-200/30 transition hover:border-[#deddd7] hover:shadow-md hover:shadow-zinc-200/50 sm:grid-cols-[48px_1fr_170px] sm:items-center">
-      <AgentAvatar accent={agent.accent} avatar={agent.avatar} />
-      <div className="min-w-0">
-        <div className="flex items-center gap-2">
-          <h3 className="truncate text-base font-semibold leading-6 text-zinc-950">{agent.name}</h3>
-          {agent.badge ? (
-            <span className="rounded-full border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
-              {agent.badge}
-            </span>
-          ) : null}
+    <button className="group/card relative flex h-full min-h-[180px] w-full flex-col justify-between overflow-hidden rounded-xl border border-[#e9e8e3] bg-white pt-3 text-left shadow-md shadow-black/[0.04] transition hover:-translate-y-px hover:border-[#deddd7] hover:shadow-md hover:shadow-black/[0.08]">
+      <div className="relative flex w-full items-start gap-2 px-3">
+        <AgentAvatar accent={agent.accent} avatar={agent.avatar} />
+        <div className="flex min-w-0 flex-1 gap-3">
+          <div className="flex min-h-[38px] min-w-0 flex-1 flex-col justify-center">
+            <div className="flex min-w-0 items-center gap-2">
+              <h3 className="line-clamp-2 text-[15px] font-semibold leading-[18px] text-zinc-950">
+                {agent.name}
+              </h3>
+              {agent.badge ? (
+                <span className="shrink-0 rounded-full border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+                  {agent.badge}
+                </span>
+              ) : null}
+            </div>
+          </div>
         </div>
-        <p className="mt-1 line-clamp-2 text-sm leading-5 text-zinc-500">{agent.description}</p>
       </div>
-      <div className="col-start-2 flex items-center justify-between gap-3 sm:col-start-auto sm:block sm:text-right">
+
+      <p className="px-3 pt-4 text-sm leading-5 text-zinc-500">{agent.description}</p>
+
+      <div className="mt-auto flex items-end justify-between gap-3 px-3 pb-3 pt-5">
         <p className="text-sm font-medium text-zinc-500">{agent.price}</p>
-        <p className="mt-0 text-xs font-semibold tracking-wider text-zinc-400 sm:mt-1">{agent.category}</p>
+        <p className="text-xs font-semibold tracking-wider text-zinc-400">{agent.category}</p>
       </div>
     </button>
   );
@@ -117,7 +125,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#fafafa] text-[#262626]">
       <header className="fixed inset-x-0 top-0 z-10 border-b border-transparent bg-[#fafafa]/80 backdrop-blur">
-        <div className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-5">
+        <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-2">
             <div className="grid h-7 w-7 place-items-center rounded-md border border-[#e9e8e3] bg-white">
               <Bot className="h-4 w-4 text-zinc-700" />
@@ -136,7 +144,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-3xl px-5 pb-20 pt-24">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-24 sm:px-6">
         <div className="max-w-xl">
           <h1 className="text-base font-semibold leading-6 text-zinc-900">The Intelligence Market</h1>
           <p className="mt-1 text-sm leading-6 text-zinc-500">AI for anything and everything</p>
@@ -144,7 +152,7 @@ export default function Home() {
 
         <section className="mt-12">
           <h2 className="text-base font-semibold leading-6 text-zinc-900">Markets</h2>
-          <div className="mt-4 grid gap-3">
+          <div className="mt-4 grid h-auto grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {agents.map((agent) => (
               <AgentCard key={agent.name} agent={agent} />
             ))}
