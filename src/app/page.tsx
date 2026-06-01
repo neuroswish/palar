@@ -66,12 +66,23 @@ const agents: Agent[] = [
     imageAlt: "NFL logo",
   },
   {
-    name: "Jack Butcher",
-    description: "Write like Jack Butcher. 50,000 tweets reverse-engineered.",
+    name: "Election Campaign Setup",
+    description: "Create assets, a marketing plan, and a website for your election campaign",
     price: "$0.03/1k tokens",
-    category: "persona",
-    accent: "from-cyan-100 to-lime-100",
-    avatar: "tiny",
+    category: "Politics",
+    accent: "from-white to-zinc-50",
+    avatar: "image",
+    image: "/logos/presidential-seal.svg",
+    imageAlt: "Presidential Seal",
+  },
+  {
+    name: "Find Customers",
+    description: "Lead gen for your highest leverage spenders",
+    price: "$0.04/1k tokens",
+    category: "Enterprise",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🎯",
   },
 ];
 
