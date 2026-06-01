@@ -1,14 +1,17 @@
+import Image from "next/image";
 import { Search, Sparkles } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 
 const agents = [
   {
-    name: "Privy Agent",
-    description: "Wallet infrastructure for winning teams. 120M+ accounts, billions in volume.",
+    name: "Find new Kith sneakers",
+    description: "Search stores across NYC for new Kith inventory",
     price: "$0.001/1k tokens",
-    category: "code",
-    accent: "from-[#ff8d77] to-[#ff6f5f]",
-    avatar: "dot",
+    category: "Shopping",
+    accent: "from-white to-zinc-50",
+    avatar: "image",
+    image: "/logos/kith.svg",
+    imageAlt: "Kith logo",
   },
   {
     name: "Strategy Proposer",
@@ -56,14 +59,21 @@ const agents = [
 function AgentAvatar({
   accent,
   avatar,
+  image,
+  imageAlt,
 }: {
   accent: string;
   avatar: string;
+  image?: string;
+  imageAlt?: string;
 }) {
   return (
     <div
       className={`relative flex h-[38px] w-[38px] shrink-0 items-center justify-center overflow-hidden rounded-sm border border-[#ecece7] bg-gradient-to-br ${accent}`}
     >
+      {avatar === "image" && image ? (
+        <Image className="object-contain" src={image} alt={imageAlt ?? ""} fill sizes="38px" />
+      ) : null}
       {avatar === "dot" ? <span className="h-5 w-5 rounded-full bg-[#090b18]" /> : null}
       {avatar === "burst" ? (
         <>
@@ -94,7 +104,12 @@ function AgentCard({ agent }: { agent: (typeof agents)[number] }) {
   return (
     <button className="group/card relative flex h-full min-h-[180px] w-full flex-col justify-between overflow-hidden rounded-xl border border-[#e9e8e3] bg-white pt-3 text-left shadow-md shadow-black/[0.04] transition hover:-translate-y-px hover:border-[#deddd7] hover:shadow-md hover:shadow-black/[0.08]">
       <div className="relative flex w-full items-start gap-2 px-3">
-        <AgentAvatar accent={agent.accent} avatar={agent.avatar} />
+        <AgentAvatar
+          accent={agent.accent}
+          avatar={agent.avatar}
+          image={agent.image}
+          imageAlt={agent.imageAlt}
+        />
         <div className="flex min-w-0 flex-1 gap-3">
           <div className="flex min-h-[38px] min-w-0 flex-1 flex-col justify-center">
             <div className="flex min-w-0 items-center gap-2">
