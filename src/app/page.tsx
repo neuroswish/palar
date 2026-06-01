@@ -1,4 +1,4 @@
-import { Bot, Search, Sparkles } from "lucide-react";
+import { Search, Sparkles } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 
 const agents = [
@@ -128,9 +128,9 @@ export default function Home() {
         <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-2">
             <div className="grid h-7 w-7 place-items-center rounded-md border border-[#e9e8e3] bg-white">
-              <Bot className="h-4 w-4 text-zinc-700" />
+              <span className="text-base leading-none" aria-hidden="true">🧠</span>
             </div>
-            <span className="text-sm font-semibold tracking-normal">palar</span>
+            <span className="text-sm font-semibold tracking-normal">Palares</span>
           </div>
           <div className="flex items-center gap-2">
             <button
