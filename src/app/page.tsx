@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Search } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
 import { markets, type Market } from "@/lib/markets";
@@ -56,12 +55,6 @@ export default function Home() {
             <span className="text-base font-semibold tracking-normal">Palares</span>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              aria-label="Search markets"
-              className="grid h-8 w-8 place-items-center rounded-md border border-[#e9e8e3] bg-white text-zinc-500 transition hover:border-[#deddd7] hover:text-zinc-900"
-            >
-              <Search className="h-4 w-4" />
-            </button>
             <AuthButton />
           </div>
         </div>
