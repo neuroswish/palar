@@ -8,8 +8,8 @@ type MarketAvatarProps = Pick<Market, "accent" | "avatar" | "image" | "imageAlt"
 };
 
 export function MarketAvatar({ accent, avatar, image, imageAlt, emoji, size = "sm" }: MarketAvatarProps) {
-  const shellSize = size === "lg" ? "h-14 w-14 rounded-md" : "h-[38px] w-[38px] rounded-sm";
-  const imageSize = size === "lg" ? "56px" : "38px";
+  const shellSize = size === "lg" ? "h-16 w-16 rounded-md" : "h-[38px] w-[38px] rounded-sm";
+  const imageSize = size === "lg" ? "64px" : "38px";
 
   return (
     <div

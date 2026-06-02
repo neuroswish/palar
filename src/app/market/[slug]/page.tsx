@@ -68,7 +68,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
       </header>
 
       <section className="mx-auto w-full max-w-2xl px-4 pb-20 pt-24 sm:px-6">
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-4">
           <MarketAvatar
             accent={market.accent}
             avatar={market.avatar}
@@ -77,16 +77,16 @@ export default async function MarketPage({ params }: MarketPageProps) {
             emoji={market.emoji}
             size="lg"
           />
-          <div className="min-w-0 flex-1">
-            <h1 className="text-3xl font-[650] leading-10 text-zinc-950">{market.name}</h1>
-            <p className="mt-2 text-base font-[440] leading-7 text-zinc-500">{market.description}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-2 text-sm font-[500] text-zinc-500">
+          <div className="flex h-16 min-w-0 flex-1 flex-col justify-between">
+            <div className="flex flex-wrap items-center gap-2 text-base font-[500] leading-5 text-zinc-500">
               <span>{market.price}</span>
               <span className="text-zinc-300">·</span>
-              <span>{market.category.toLowerCase()}</span>
+              <span>{market.category}</span>
             </div>
+            <h1 className="truncate text-[32px] font-[650] leading-10 text-zinc-950">{market.name}</h1>
           </div>
         </div>
+        <p className="mt-4 text-base font-[440] leading-7 text-zinc-500">{market.description}</p>
 
         <div className="mt-10">
           <button className="h-11 w-full rounded-lg bg-zinc-950 px-8 text-sm font-[650] text-white transition hover:bg-zinc-800">
