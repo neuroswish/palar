@@ -110,14 +110,6 @@ export default async function MarketPage({ params }: MarketPageProps) {
 
         <p className="mt-8 text-base font-[440] leading-7 text-zinc-500">{market.brief}</p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {[market.category, ...market.examples].map((tag) => (
-            <span key={tag} className="rounded-full bg-[#fafafa] px-2.5 py-1 text-xs font-[600] text-zinc-500">
-              {tag.toLowerCase()}
-            </span>
-          ))}
-        </div>
-
         <section className="mt-10">
           <h2 className="text-lg font-[650] leading-7 text-zinc-950">Deliverables</h2>
           <ul className="mt-4 space-y-2">
