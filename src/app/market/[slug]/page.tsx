@@ -88,8 +88,8 @@ export default async function MarketPage({ params }: MarketPageProps) {
           </div>
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <button className="h-11 rounded-lg bg-zinc-950 px-8 text-sm font-[650] text-white transition hover:bg-zinc-800">
+        <div className="mt-10">
+          <button className="h-11 w-full rounded-lg bg-zinc-950 px-8 text-sm font-[650] text-white transition hover:bg-zinc-800">
             Start
           </button>
         </div>
