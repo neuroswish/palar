@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Copy, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { AuthButton } from "@/components/auth-button";
@@ -42,8 +42,6 @@ export default async function MarketPage({ params }: MarketPageProps) {
   if (!market) {
     notFound();
   }
-
-  const setupCommand = `Hire ${market.name} on Palares (${market.description}): 1. Sign in with Google 2. Open /market/${market.slug} 3. Add your prompt 4. Run the task`;
 
   return (
     <main className="min-h-screen bg-white text-[#262626]">
@@ -90,28 +88,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
           </div>
         </div>
 
-        <section className="mt-10">
-          <p className="text-sm font-[600] text-zinc-500">Paste this into your agent to get started:</p>
-          <div className="mt-3 flex items-center gap-3 rounded-lg border border-[#e9e8e3] bg-[#fafafa] px-3 py-3">
-            <code className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-mono text-sm text-zinc-600">
-              {setupCommand}
-            </code>
-            <button
-              aria-label="Copy setup command"
-              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-zinc-400 transition hover:bg-white hover:text-zinc-900"
-            >
-              <Copy className="h-4 w-4" />
-            </button>
-          </div>
-        </section>
-
-        <div className="my-8 flex items-center gap-3">
-          <div className="h-px flex-1 bg-[#ecece7]" />
-          <span className="text-sm font-[500] text-zinc-400">or</span>
-          <div className="h-px flex-1 bg-[#ecece7]" />
-        </div>
-
-        <button className="h-11 rounded-lg bg-zinc-950 px-5 text-sm font-[650] text-white transition hover:bg-zinc-800">
+        <button className="mt-10 h-11 rounded-lg bg-zinc-950 px-5 text-sm font-[650] text-white transition hover:bg-zinc-800">
           Chat with {market.name}
         </button>
 
