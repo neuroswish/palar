@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, Bookmark, Search, Share2 } from "lucide-react";
+import { Copy, Search } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { AuthButton } from "@/components/auth-button";
@@ -43,6 +43,8 @@ export default async function MarketPage({ params }: MarketPageProps) {
     notFound();
   }
 
+  const setupCommand = `Hire ${market.name} on Palares (${market.description}): 1. Sign in with Google 2. Open /market/${market.slug} 3. Add your prompt 4. Run the task`;
+
   return (
     <main className="min-h-screen bg-white text-[#262626]">
       <header className="fixed inset-x-0 top-0 z-10 border-b border-transparent bg-white/80 backdrop-blur">
@@ -67,177 +69,122 @@ export default async function MarketPage({ params }: MarketPageProps) {
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-24 sm:px-6">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm font-[500] text-zinc-500 transition hover:text-zinc-950"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Markets
-        </Link>
-
-        <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
-          <section className="min-w-0">
-            <div className="border-b border-[#ecece7] pb-5">
-              <div className="flex items-start gap-3">
-                <MarketAvatar
-                  accent={market.accent}
-                  avatar={market.avatar}
-                  image={market.image}
-                  imageAlt={market.imageAlt}
-                  emoji={market.emoji}
-                  size="lg"
-                />
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-[#e9e8e3] bg-[#fafafa] px-2.5 py-1 text-xs font-[600] text-zinc-500">
-                      {market.category}
-                    </span>
-                    <span className="text-xs font-[500] text-zinc-400">{market.timeline}</span>
-                  </div>
-                  <h1 className="mt-3 max-w-3xl text-3xl font-[650] leading-10 text-zinc-950 sm:text-4xl sm:leading-[46px]">
-                    {market.name}
-                  </h1>
-                  <p className="mt-3 max-w-2xl text-base font-[440] leading-7 text-zinc-500">
-                    {market.description}
-                  </p>
-                </div>
-                <div className="hidden items-center gap-2 sm:flex">
-                  <button
-                    aria-label="Share market"
-                    className="grid h-9 w-9 place-items-center rounded-md border border-[#e9e8e3] bg-white text-zinc-500 transition hover:border-[#deddd7] hover:text-zinc-900"
-                  >
-                    <Share2 className="h-4 w-4" />
-                  </button>
-                  <button
-                    aria-label="Save market"
-                    className="grid h-9 w-9 place-items-center rounded-md border border-[#e9e8e3] bg-white text-zinc-500 transition hover:border-[#deddd7] hover:text-zinc-900"
-                  >
-                    <Bookmark className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
+      <section className="mx-auto w-full max-w-2xl px-4 pb-20 pt-24 sm:px-6">
+        <div className="flex items-start gap-3">
+          <MarketAvatar
+            accent={market.accent}
+            avatar={market.avatar}
+            image={market.image}
+            imageAlt={market.imageAlt}
+            emoji={market.emoji}
+            size="lg"
+          />
+          <div className="min-w-0 flex-1">
+            <h1 className="text-3xl font-[650] leading-10 text-zinc-950">{market.name}</h1>
+            <p className="mt-2 text-base font-[440] leading-7 text-zinc-500">{market.description}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-sm font-[500] text-zinc-500">
+              <span>{market.price}</span>
+              <span className="text-zinc-300">·</span>
+              <span>{market.category.toLowerCase()}</span>
             </div>
-
-            <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
-              {[
-                ["Volume", market.volume],
-                ["Requests", market.requests],
-                ["Active agents", market.activeAgents],
-                ["Match rate", market.confidence],
-              ].map(([label, value]) => (
-                <div key={label} className="rounded-xl border border-[#e9e8e3] bg-white p-4 shadow-sm shadow-black/[0.03]">
-                  <p className="text-xs font-[500] text-zinc-400">{label}</p>
-                  <p className="mt-2 text-xl font-[650] leading-7 text-zinc-950">{value}</p>
-                </div>
-              ))}
-            </div>
-
-            <section className="mt-5 rounded-xl border border-[#e9e8e3] bg-white shadow-sm shadow-black/[0.03]">
-              <div className="flex items-center justify-between border-b border-[#ecece7] px-4 py-3">
-                <h2 className="text-sm font-[650] text-zinc-950">Market activity</h2>
-                <div className="flex items-center gap-1 rounded-md border border-[#e9e8e3] bg-[#fafafa] p-1 text-xs font-[600] text-zinc-500">
-                  {["1H", "1D", "1W", "All"].map((range, index) => (
-                    <span
-                      key={range}
-                      className={index === 3 ? "rounded bg-white px-2 py-1 text-zinc-950 shadow-sm" : "px-2 py-1"}
-                    >
-                      {range}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="h-64 px-4 py-5">
-                <div className="relative h-full overflow-hidden rounded-lg bg-[#fafafa]">
-                  <div className="absolute inset-x-0 bottom-0 h-px bg-[#e6e4dc]" />
-                  <div className="absolute inset-x-6 top-8 h-px bg-[#ecece7]" />
-                  <div className="absolute inset-x-6 top-24 h-px bg-[#ecece7]" />
-                  <div className="absolute inset-x-6 top-40 h-px bg-[#ecece7]" />
-                  <svg className="absolute inset-0 h-full w-full" viewBox="0 0 680 240" preserveAspectRatio="none">
-                    <path
-                      d="M0 170 C70 135 104 142 160 118 C228 88 276 102 326 76 C392 42 448 56 500 38 C570 14 628 26 680 20"
-                      fill="none"
-                      stroke="#2563eb"
-                      strokeLinecap="round"
-                      strokeWidth="3"
-                    />
-                    <path
-                      d="M0 170 C70 135 104 142 160 118 C228 88 276 102 326 76 C392 42 448 56 500 38 C570 14 628 26 680 20 L680 240 L0 240 Z"
-                      fill="url(#marketGradient)"
-                    />
-                    <defs>
-                      <linearGradient id="marketGradient" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#2563eb" stopOpacity="0.16" />
-                        <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </div>
-            </section>
-
-            <section className="mt-5 grid gap-5 md:grid-cols-2">
-              <div className="rounded-xl border border-[#e9e8e3] bg-white p-4 shadow-sm shadow-black/[0.03]">
-                <h2 className="text-sm font-[650] text-zinc-950">Task brief</h2>
-                <p className="mt-3 text-sm font-[440] leading-6 text-zinc-500">{market.brief}</p>
-                <div className="mt-4 rounded-lg border border-[#e9e8e3] bg-[#fafafa] p-3">
-                  <p className="text-xs font-[600] text-zinc-400">Popular prompts</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {market.examples.map((example) => (
-                      <span
-                        key={example}
-                        className="rounded-md border border-[#e9e8e3] bg-white px-2.5 py-1.5 text-xs font-[500] text-zinc-600"
-                      >
-                        {example}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-[#e9e8e3] bg-white p-4 shadow-sm shadow-black/[0.03]">
-                <h2 className="text-sm font-[650] text-zinc-950">Resolution criteria</h2>
-                <div className="mt-4 space-y-3">
-                  {market.deliverables.map((deliverable, index) => (
-                    <div key={deliverable} className="flex gap-3">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-zinc-950 text-xs font-[650] text-white">
-                        {index + 1}
-                      </span>
-                      <p className="pt-0.5 text-sm font-[440] leading-5 text-zinc-500">{deliverable}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </section>
-
-          <aside className="lg:sticky lg:top-20 lg:self-start">
-            <div className="rounded-xl border border-[#e9e8e3] bg-white shadow-md shadow-black/[0.05]">
-              <div className="border-b border-[#ecece7] p-4">
-                <p className="text-xs font-[600] uppercase text-zinc-400">Run market</p>
-                <p className="mt-2 text-2xl font-[650] leading-8 text-zinc-950">{market.price}</p>
-                <p className="mt-1 text-sm font-[440] text-zinc-500">Estimated completion: {market.timeline}</p>
-              </div>
-              <div className="p-4">
-                <div className="grid grid-cols-2 gap-2">
-                  <button className="h-11 rounded-lg bg-emerald-50 text-sm font-[650] text-emerald-700 transition hover:bg-emerald-100">
-                    Start
-                  </button>
-                  <button className="h-11 rounded-lg bg-rose-50 text-sm font-[650] text-rose-600 transition hover:bg-rose-100">
-                    Watch
-                  </button>
-                </div>
-                <div className="mt-4 rounded-lg border border-[#e9e8e3] bg-[#fafafa] p-3">
-                  <p className="text-xs font-[600] text-zinc-400">Input</p>
-                  <p className="mt-2 min-h-20 text-sm font-[440] leading-5 text-zinc-500">{market.brief}</p>
-                </div>
-                <button className="mt-4 h-11 w-full rounded-lg bg-zinc-950 text-sm font-[650] text-white transition hover:bg-zinc-800">
-                  Run task
-                </button>
-              </div>
-            </div>
-          </aside>
+          </div>
         </div>
+
+        <section className="mt-10">
+          <p className="text-sm font-[600] text-zinc-500">Paste this into your agent to get started:</p>
+          <div className="mt-3 flex items-center gap-3 rounded-lg border border-[#e9e8e3] bg-[#fafafa] px-3 py-3">
+            <code className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-mono text-sm text-zinc-600">
+              {setupCommand}
+            </code>
+            <button
+              aria-label="Copy setup command"
+              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-zinc-400 transition hover:bg-white hover:text-zinc-900"
+            >
+              <Copy className="h-4 w-4" />
+            </button>
+          </div>
+        </section>
+
+        <div className="my-8 flex items-center gap-3">
+          <div className="h-px flex-1 bg-[#ecece7]" />
+          <span className="text-sm font-[500] text-zinc-400">or</span>
+          <div className="h-px flex-1 bg-[#ecece7]" />
+        </div>
+
+        <button className="h-11 rounded-lg bg-zinc-950 px-5 text-sm font-[650] text-white transition hover:bg-zinc-800">
+          Chat with {market.name}
+        </button>
+
+        <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-lg border border-[#e9e8e3] bg-white sm:grid-cols-4">
+          {[
+            [market.volume, "Total earned"],
+            [market.requests, "Requests"],
+            [market.activeAgents, "Active agents"],
+            [market.price.replace("/1k tokens", ""), "Avg $/req"],
+          ].map(([value, label]) => (
+            <div key={label} className="border-b border-r border-[#ecece7] px-4 py-3 last:border-r-0 sm:border-b-0">
+              <p className="text-lg font-[650] leading-7 text-zinc-950">{value}</p>
+              <p className="text-xs font-[500] text-zinc-400">{label}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-8 text-base font-[440] leading-7 text-zinc-500">{market.brief}</p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {[market.category, ...market.examples].map((tag) => (
+            <span key={tag} className="rounded-full bg-[#fafafa] px-2.5 py-1 text-xs font-[600] text-zinc-500">
+              {tag.toLowerCase()}
+            </span>
+          ))}
+        </div>
+
+        <section className="mt-10">
+          <h2 className="text-lg font-[650] leading-7 text-zinc-950">Deliverables</h2>
+          <ul className="mt-4 space-y-2">
+            {market.deliverables.map((deliverable) => (
+              <li key={deliverable} className="flex gap-3 text-sm font-[440] leading-6 text-zinc-500">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-10">
+          <h2 className="text-lg font-[650] leading-7 text-zinc-950">Example prompts</h2>
+          <ul className="mt-4 space-y-2">
+            {market.examples.map((example) => (
+              <li key={example} className="flex gap-3 text-sm font-[440] leading-6 text-zinc-500">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
+                {example}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mt-12">
+          <div className="overflow-hidden rounded-lg border border-[#e9e8e3]">
+            <table className="w-full border-collapse text-left text-sm">
+              <thead className="bg-[#fafafa] text-xs font-[600] text-zinc-400">
+                <tr>
+                  <th className="px-3 py-2">Tokens</th>
+                  <th className="px-3 py-2">Cost</th>
+                  <th className="px-3 py-2">Latency</th>
+                  <th className="px-3 py-2">Tx</th>
+                  <th className="px-3 py-2">Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="px-3 py-8 text-center text-zinc-400" colSpan={5}>
+                    No transactions yet
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </section>
     </main>
   );
