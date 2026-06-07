@@ -76,7 +76,7 @@ function PrivyAuthButton() {
   const [balance, setBalance] = useState<{ address: string; value: number } | null>(null);
 
   const walletAddress = useMemo(() => {
-    const embeddedWallet = wallets.find((wallet) => wallet.standardWallet.name === "Privy");
+    const embeddedWallet = wallets.find((wallet) => wallet.standardWallet?.name === "Privy");
     return embeddedWallet?.address ?? wallets[0]?.address;
   }, [wallets]);
 
@@ -106,7 +106,7 @@ function PrivyAuthButton() {
 
   if (authenticated) {
     const displayName = user?.email?.address ?? (walletAddress ? formatAddress(walletAddress) : "Signed in");
-    const displayedBalance = balance?.address === walletAddress ? balance.value : null;
+    const displayedBalance = balance && walletAddress && balance.address === walletAddress ? balance.value : null;
 
     return (
       <div className="flex items-center gap-2">
