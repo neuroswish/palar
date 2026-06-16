@@ -3,6 +3,7 @@ export type Market = {
   slug: string;
   description: string;
   price: string;
+  users: string;
   category: string;
   accent: string;
   avatar: string;
@@ -26,6 +27,7 @@ export const markets: Market[] = [
     slug: "find-new-kith-sneakers",
     description: "Search stores across NYC for new Kith inventory",
     price: "$0.001/1k tokens",
+    users: "1.2K users",
     category: "Shopping",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -45,6 +47,7 @@ export const markets: Market[] = [
     slug: "cheapest-knicks-tickets",
     description: "Instantly get the cheapest Knicks tickets for a particular section across all platforms",
     price: "$0.025/1k tokens",
+    users: "2.4K users",
     category: "Sports",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -64,6 +67,7 @@ export const markets: Market[] = [
     slug: "sell-my-watch",
     description: "List your watch or jewelry across all marketplaces and find the best offers",
     price: "$0.015/1k tokens",
+    users: "780 users",
     category: "Fashion",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -83,6 +87,7 @@ export const markets: Market[] = [
     slug: "design-review",
     description: "Professional design feedback and implementation for your website or deck",
     price: "$0.02/1k tokens",
+    users: "1.8K users",
     category: "Design",
     accent: "from-white to-zinc-50",
     avatar: "emoji",
@@ -101,6 +106,7 @@ export const markets: Market[] = [
     slug: "fantasy-football-betting-pool",
     description: "Create a secure portal for your friends to put money and bet on fantasy football",
     price: "$0.02/1k tokens",
+    users: "640 users",
     category: "Fun & Games",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -120,6 +126,7 @@ export const markets: Market[] = [
     slug: "election-campaign-setup",
     description: "Create assets, a marketing plan, and a website for your election campaign",
     price: "$0.03/1k tokens",
+    users: "920 users",
     category: "Politics",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -139,6 +146,7 @@ export const markets: Market[] = [
     slug: "find-customers",
     description: "Lead gen for your highest leverage spenders",
     price: "$0.04/1k tokens",
+    users: "3.1K users",
     category: "Enterprise",
     accent: "from-white to-zinc-50",
     avatar: "emoji",

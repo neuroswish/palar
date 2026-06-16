@@ -36,7 +36,7 @@ function MarketCard({ market }: { market: Market }) {
       <p className="px-3 pt-4 text-sm font-[440] leading-5 text-zinc-500">{market.description}</p>
 
       <div className="mt-auto flex items-end justify-between gap-3 px-3 pb-3 pt-5">
-        <p className="text-sm font-[440] text-zinc-500">{market.price}</p>
+        <p className="text-sm font-[440] text-zinc-500">{market.users}</p>
         <p className="text-xs font-[500] text-zinc-400">{market.category}</p>
       </div>
     </Link>
