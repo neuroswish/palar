@@ -22,7 +22,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
         appearance: {
           theme: "light",
           accentColor: "#09090b",
-          landingHeader: "Sign in to Palares",
+          landingHeader: "Sign in to Ares",
           loginMessage: "Enter your email to continue.",
           walletChainType: "solana-only",
         },

@@ -24,12 +24,12 @@ export async function generateMetadata({ params }: MarketPageProps): Promise<Met
 
   if (!market) {
     return {
-      title: "Market not found | Palares",
+      title: "Market not found | Ares",
     };
   }
 
   return {
-    title: `${market.name} | Palares`,
+    title: `${market.name} | Ares`,
     description: market.description,
   };
 }
@@ -52,7 +52,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
                 🧠
               </span>
             </div>
-            <span className="text-base font-semibold tracking-normal">Palares</span>
+            <span className="text-base font-semibold tracking-normal">Ares</span>
           </Link>
           <div className="flex items-center gap-2">
             <AuthButton />

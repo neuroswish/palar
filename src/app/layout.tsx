@@ -4,7 +4,7 @@ import { AppProviders } from "@/components/app-providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Palares",
+  title: "Ares",
   description: "An AI agent marketplace for getting work done.",
 };
 

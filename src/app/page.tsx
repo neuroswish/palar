@@ -52,7 +52,7 @@ export default function Home() {
             <div className="grid h-8 w-8 place-items-center rounded-md border border-[#e9e8e3] bg-white">
               <span className="text-lg leading-none" aria-hidden="true">🧠</span>
             </div>
-            <span className="text-base font-semibold tracking-normal">Palares</span>
+            <span className="text-base font-semibold tracking-normal">Ares</span>
           </div>
           <div className="flex items-center gap-2">
             <AuthButton />
