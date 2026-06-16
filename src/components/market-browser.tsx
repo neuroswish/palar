@@ -8,7 +8,22 @@ import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
 import { markets, type Market } from "@/lib/markets";
 
-const categories = ["All", ...Array.from(new Set(markets.map((market) => market.category)))];
+const marketCategories = Array.from(new Set(markets.map((market) => market.category)));
+const testCategories = [
+  "Travel",
+  "Food",
+  "Concerts",
+  "Crypto",
+  "Dating",
+  "Jobs",
+  "Real Estate",
+  "Local",
+  "AI",
+  "Tickets",
+  "Collectibles",
+  "Wellness",
+];
+const categories = ["All", ...marketCategories, ...testCategories];
 
 function MarketCard({ market }: { market: Market }) {
   return (
@@ -96,7 +111,7 @@ export function MarketBrowser() {
 
   return (
     <main className="min-h-screen bg-white text-[#262626]">
-      <header className="fixed inset-x-0 top-0 z-10 border-b border-[#ecece7] bg-white/90 backdrop-blur">
+      <header className="fixed inset-x-0 top-0 z-10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex min-w-0 flex-1 items-center gap-5">
             <Link className="flex shrink-0 items-center gap-2" href="/">
@@ -120,27 +135,31 @@ export function MarketBrowser() {
       </header>
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-[112px] sm:px-6 md:pt-16">
-        <div className="-mx-4 overflow-x-auto border-y border-[#ecece7] px-4 py-3 sm:-mx-6 sm:px-6">
-          <div className="flex min-w-max items-center gap-2">
-            {categories.map((category) => {
-              const isActive = category === activeCategory;
+        <div className="relative -mx-4 border-b border-[#ecece7] sm:-mx-6">
+          <div className="overflow-x-auto px-4 py-3 [scrollbar-width:none] sm:px-6 [&::-webkit-scrollbar]:hidden">
+            <div className="flex min-w-max items-center gap-1">
+              {categories.map((category) => {
+                const isActive = category === activeCategory;
 
-              return (
-                <button
-                  className={`h-9 rounded-lg px-4 text-sm font-[600] transition ${
-                    isActive
-                      ? "bg-[#eef1ff] text-[#3157e8]"
-                      : "text-zinc-500 hover:bg-[#fafafa] hover:text-zinc-900"
-                  }`}
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  type="button"
-                >
-                  {category}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    className={`h-9 rounded-lg px-3 text-sm font-[600] transition ${
+                      isActive
+                        ? "bg-[#eef1ff] text-[#3157e8]"
+                        : "text-zinc-500 hover:bg-[#fafafa] hover:text-zinc-900"
+                    }`}
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    type="button"
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
           </div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white via-white/80 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent" />
         </div>
 
         <div className="mt-6 grid h-auto grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
