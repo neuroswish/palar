@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 
+import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
 import { markets, type Market } from "@/lib/markets";
 
@@ -49,6 +50,33 @@ function MarketCard({ market }: { market: Market }) {
   );
 }
 
+function MarketSearch({
+  className = "",
+  query,
+  setQuery,
+}: {
+  className?: string;
+  query: string;
+  setQuery: (query: string) => void;
+}) {
+  return (
+    <label className={`relative block ${className}`}>
+      <span className="sr-only">Search markets</span>
+      <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400" />
+      <input
+        className="h-[44px] w-full rounded-xl border border-transparent bg-[#f5f5f5] px-12 text-base font-[440] text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-[#deddd7] focus:bg-white focus:shadow-md focus:shadow-black/[0.04]"
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Search markets..."
+        type="search"
+        value={query}
+      />
+      <span className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 text-lg font-[440] text-zinc-300 sm:block">
+        /
+      </span>
+    </label>
+  );
+}
+
 export function MarketBrowser() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
@@ -67,56 +95,64 @@ export function MarketBrowser() {
   }, [activeCategory, query]);
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-20 sm:px-6">
-      <div className="mx-auto max-w-4xl">
-        <label className="relative block">
-          <span className="sr-only">Search markets</span>
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400" />
-          <input
-            className="h-13 w-full rounded-xl border border-transparent bg-[#f5f5f5] px-12 text-base font-[440] text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-[#deddd7] focus:bg-white focus:shadow-md focus:shadow-black/[0.04]"
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search markets..."
-            type="search"
-            value={query}
-          />
-          <span className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 text-lg font-[440] text-zinc-300 sm:block">
-            /
-          </span>
-        </label>
-      </div>
-
-      <div className="-mx-4 mt-6 overflow-x-auto border-y border-[#ecece7] px-4 py-3 sm:-mx-6 sm:px-6">
-        <div className="flex min-w-max items-center gap-2">
-          {categories.map((category) => {
-            const isActive = category === activeCategory;
-
-            return (
-              <button
-                className={`h-9 rounded-lg px-4 text-sm font-[600] transition ${
-                  isActive
-                    ? "bg-[#eef1ff] text-[#3157e8]"
-                    : "text-zinc-500 hover:bg-[#fafafa] hover:text-zinc-900"
-                }`}
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                type="button"
-              >
-                {category}
-              </button>
-            );
-          })}
+    <main className="min-h-screen bg-white text-[#262626]">
+      <header className="fixed inset-x-0 top-0 z-10 border-b border-[#ecece7] bg-white/90 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+          <div className="flex min-w-0 flex-1 items-center gap-5">
+            <Link className="flex shrink-0 items-center gap-2" href="/">
+              <div className="grid h-8 w-8 place-items-center rounded-md border border-[#e9e8e3] bg-white">
+                <span className="text-lg leading-none" aria-hidden="true">
+                  🧠
+                </span>
+              </div>
+              <span className="text-base font-semibold tracking-normal">Ares</span>
+            </Link>
+            <MarketSearch className="hidden w-full max-w-[620px] md:block" query={query} setQuery={setQuery} />
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <AuthButton />
+          </div>
         </div>
-      </div>
 
-      <div className="mt-6 grid h-auto grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filteredMarkets.map((market) => (
-          <MarketCard key={market.name} market={market} />
-        ))}
-      </div>
+        <div className="mx-auto w-full max-w-7xl px-4 pb-3 md:hidden">
+          <MarketSearch query={query} setQuery={setQuery} />
+        </div>
+      </header>
 
-      {filteredMarkets.length === 0 ? (
-        <div className="mt-16 text-center text-sm font-[500] text-zinc-400">No markets found</div>
-      ) : null}
-    </section>
+      <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-[112px] sm:px-6 md:pt-16">
+        <div className="-mx-4 overflow-x-auto border-y border-[#ecece7] px-4 py-3 sm:-mx-6 sm:px-6">
+          <div className="flex min-w-max items-center gap-2">
+            {categories.map((category) => {
+              const isActive = category === activeCategory;
+
+              return (
+                <button
+                  className={`h-9 rounded-lg px-4 text-sm font-[600] transition ${
+                    isActive
+                      ? "bg-[#eef1ff] text-[#3157e8]"
+                      : "text-zinc-500 hover:bg-[#fafafa] hover:text-zinc-900"
+                  }`}
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  type="button"
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-6 grid h-auto grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {filteredMarkets.map((market) => (
+            <MarketCard key={market.name} market={market} />
+          ))}
+        </div>
+
+        {filteredMarkets.length === 0 ? (
+          <div className="mt-16 text-center text-sm font-[500] text-zinc-400">No markets found</div>
+        ) : null}
+      </section>
+    </main>
   );
 }
