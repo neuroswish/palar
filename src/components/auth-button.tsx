@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { usePrivy } from "@privy-io/react-auth";
 import { useWallets } from "@privy-io/react-auth/solana";
@@ -27,19 +28,30 @@ type TokenAccountResponse = {
   };
 };
 
-function formatAddress(address: string) {
-  return `${address.slice(0, 4)}...${address.slice(-4)}`;
+function formatUsdcBalance(balance: number | null) {
+  const normalizedBalance = balance ?? 0;
+  return `$${normalizedBalance.toLocaleString("en-US", {
+    maximumFractionDigits: normalizedBalance > 0 && normalizedBalance < 0.01 ? 6 : 2,
+    minimumFractionDigits: 2,
+  })}`;
 }
 
-function formatUsdcBalance(balance: number | null) {
-  if (balance === null) {
-    return "USDC --";
-  }
+const profileColors = [
+  "bg-[#3157e8]",
+  "bg-[#22a06b]",
+  "bg-[#d9466f]",
+  "bg-[#f59e0b]",
+  "bg-[#7c3aed]",
+  "bg-[#0891b2]",
+];
 
-  return `${balance.toLocaleString("en-US", {
-    maximumFractionDigits: balance > 0 && balance < 0.01 ? 6 : 2,
-    minimumFractionDigits: 2,
-  })} USDC`;
+function getProfileSeed(userIdentifier: string) {
+  return userIdentifier.split("").reduce((total, character) => total + character.charCodeAt(0), 0);
+}
+
+function getProfileInitial(userIdentifier: string) {
+  const trimmedIdentifier = userIdentifier.trim();
+  return (trimmedIdentifier[0] ?? "A").toUpperCase();
 }
 
 async function fetchUsdcBalance(address: string) {
@@ -70,9 +82,8 @@ async function fetchUsdcBalance(address: string) {
 }
 
 function PrivyAuthButton() {
-  const { authenticated, login, logout, ready, user } = usePrivy();
+  const { authenticated, login, ready, user } = usePrivy();
   const { ready: walletsReady, wallets } = useWallets();
-  const [isSigningOut, setIsSigningOut] = useState(false);
   const [balance, setBalance] = useState<{ address: string; value: number } | null>(null);
 
   const walletAddress = useMemo(() => {
@@ -105,30 +116,23 @@ function PrivyAuthButton() {
   }, [authenticated, walletAddress, walletsReady]);
 
   if (authenticated) {
-    const displayName = user?.email?.address ?? (walletAddress ? formatAddress(walletAddress) : "Signed in");
+    const displayName = user?.email?.address ?? walletAddress ?? "Ares profile";
     const displayedBalance = balance && walletAddress && balance.address === walletAddress ? balance.value : null;
+    const profileColor = profileColors[getProfileSeed(displayName) % profileColors.length];
 
     return (
-      <div className="flex items-center gap-2">
-        <span className="hidden h-8 items-center rounded-md border border-[#e9e8e3] bg-white px-2 text-sm font-medium text-zinc-600 sm:flex">
+      <div className="flex items-center gap-3">
+        <span className="text-sm font-[600] text-zinc-700" title="USDC balance">
           {formatUsdcBalance(displayedBalance)}
         </span>
-        <button
-          className="flex h-8 items-center gap-2 rounded-md border border-[#e9e8e3] bg-white px-2 text-sm font-medium text-zinc-700 transition hover:border-[#deddd7] hover:text-zinc-950 disabled:cursor-wait disabled:opacity-70"
-          disabled={isSigningOut}
-          onClick={async () => {
-            setIsSigningOut(true);
-            try {
-              await logout();
-              setBalance(null);
-            } finally {
-              setIsSigningOut(false);
-            }
-          }}
+        <Link
+          aria-label="Open profile"
+          className={`grid h-8 w-8 place-items-center rounded-full text-sm font-[650] text-white shadow-sm shadow-black/[0.08] ring-1 ring-black/[0.06] transition hover:scale-[1.03] ${profileColor}`}
+          href="/profile"
+          title={displayName}
         >
-          <span className="hidden max-w-32 truncate sm:inline">{displayName}</span>
-          <span>{isSigningOut ? "Signing out" : "Sign out"}</span>
-        </button>
+          {getProfileInitial(displayName)}
+        </Link>
       </div>
     );
   }
