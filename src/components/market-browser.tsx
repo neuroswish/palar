@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { RefObject } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
@@ -67,10 +68,12 @@ function MarketCard({ market }: { market: Market }) {
 
 function MarketSearch({
   className = "",
+  inputRef,
   query,
   setQuery,
 }: {
   className?: string;
+  inputRef?: RefObject<HTMLInputElement | null>;
   query: string;
   setQuery: (query: string) => void;
 }) {
@@ -82,6 +85,7 @@ function MarketSearch({
         className="h-[44px] w-full rounded-xl border border-transparent bg-[#f5f5f5] px-12 text-base font-[440] text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-[#deddd7] focus:bg-white focus:shadow-md focus:shadow-black/[0.04]"
         onChange={(event) => setQuery(event.target.value)}
         placeholder="Search markets..."
+        ref={inputRef}
         type="search"
         value={query}
       />
@@ -95,6 +99,40 @@ function MarketSearch({
 export function MarketBrowser() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
+  const desktopSearchRef = useRef<HTMLInputElement | null>(null);
+  const mobileSearchRef = useRef<HTMLInputElement | null>(null);
+
+  const focusSearch = () => {
+    const searchInputs = [desktopSearchRef.current, mobileSearchRef.current];
+    const visibleSearchInput =
+      searchInputs.find((input) => input && input.getClientRects().length > 0) ?? desktopSearchRef.current ?? mobileSearchRef.current;
+
+    visibleSearchInput?.focus();
+  };
+
+  useEffect(() => {
+    const handleSlashShortcut = (event: KeyboardEvent) => {
+      const target = event.target;
+      const isEditableTarget =
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        target instanceof HTMLSelectElement ||
+        (target instanceof HTMLElement && target.isContentEditable);
+
+      if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey || isEditableTarget) {
+        return;
+      }
+
+      event.preventDefault();
+      focusSearch();
+    };
+
+    window.addEventListener("keydown", handleSlashShortcut);
+
+    return () => {
+      window.removeEventListener("keydown", handleSlashShortcut);
+    };
+  }, []);
 
   const filteredMarkets = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -122,7 +160,12 @@ export function MarketBrowser() {
               </div>
               <span className="text-base font-semibold tracking-normal">Ares</span>
             </Link>
-            <MarketSearch className="hidden w-full max-w-[620px] md:block" query={query} setQuery={setQuery} />
+            <MarketSearch
+              className="hidden w-full max-w-[620px] md:block"
+              inputRef={desktopSearchRef}
+              query={query}
+              setQuery={setQuery}
+            />
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <AuthButton />
@@ -130,7 +173,7 @@ export function MarketBrowser() {
         </div>
 
         <div className="mx-auto w-full max-w-7xl px-4 pb-3 md:hidden">
-          <MarketSearch query={query} setQuery={setQuery} />
+          <MarketSearch inputRef={mobileSearchRef} query={query} setQuery={setQuery} />
         </div>
       </header>
 
