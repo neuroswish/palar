@@ -37,6 +37,29 @@ const commentPreviews = [
   },
 ];
 
+const dummyChatMessages = [
+  {
+    side: "agent",
+    text: "I can check Kith Soho, Williamsburg, and nearby retailers that tend to carry Kith collaborations. Share your size and any colorways you care about.",
+  },
+  {
+    side: "user",
+    text: "Size 10.5 or 11. Mainly looking for ASICS, New Balance, or Adidas collabs.",
+  },
+  {
+    side: "agent",
+    text: "Got it. I would prioritize stores with same-day pickup first, then widen to online inventory with NYC delivery windows under 48 hours.",
+  },
+  {
+    side: "user",
+    text: "Budget is under $280 if possible. I can pick up in Manhattan after 5pm.",
+  },
+  {
+    side: "agent",
+    text: "I found three likely search paths: direct Kith product pages, nearby boutique inventory, and resale listings filtered for local pickup. Once started, I would return the strongest matches with links and pickup notes.",
+  },
+];
+
 export async function generateMetadata({ params }: MarketPageProps): Promise<Metadata> {
   const { slug } = await params;
   const market = getMarketBySlug(slug);
@@ -119,6 +142,27 @@ export default async function MarketPage({ params }: MarketPageProps) {
                 <p className="text-sm font-[440] leading-6 text-white/80">{market.examples[0]}</p>
               </div>
 
+              {dummyChatMessages.slice(0, 2).map((message) => (
+                <div
+                  className={
+                    message.side === "user"
+                      ? "ml-auto max-w-2xl rounded-2xl bg-zinc-950 p-4 text-white"
+                      : "max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4"
+                  }
+                  key={message.text}
+                >
+                  <p
+                    className={
+                      message.side === "user"
+                        ? "text-sm font-[440] leading-6 text-white/80"
+                        : "text-sm font-[440] leading-6 text-zinc-500"
+                    }
+                  >
+                    {message.text}
+                  </p>
+                </div>
+              ))}
+
               <div className="max-w-3xl rounded-2xl border border-[#eef0f4] bg-white p-4 shadow-[0_1px_2px_rgba(17,24,39,0.03)]">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-sm font-[650] text-zinc-950">Draft output preview</p>
@@ -135,6 +179,27 @@ export default async function MarketPage({ params }: MarketPageProps) {
                   ))}
                 </ul>
               </div>
+
+              {dummyChatMessages.slice(2).map((message) => (
+                <div
+                  className={
+                    message.side === "user"
+                      ? "ml-auto max-w-2xl rounded-2xl bg-zinc-950 p-4 text-white"
+                      : "max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4"
+                  }
+                  key={message.text}
+                >
+                  <p
+                    className={
+                      message.side === "user"
+                        ? "text-sm font-[440] leading-6 text-white/80"
+                        : "text-sm font-[440] leading-6 text-zinc-500"
+                    }
+                  >
+                    {message.text}
+                  </p>
+                </div>
+              ))}
             </div>
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-white via-white/90 to-transparent" />
