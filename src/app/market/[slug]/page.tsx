@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Paperclip, Send } from "lucide-react";
+import { ArrowUp, Paperclip } from "lucide-react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
@@ -139,9 +139,9 @@ export default async function MarketPage({ params }: MarketPageProps) {
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-white via-white/90 to-transparent" />
             <div className="absolute inset-x-5 bottom-5 z-30 sm:inset-x-6 lg:inset-x-8">
-              <div className="flex items-end gap-3 rounded-2xl border border-[#e7e9ef] bg-white p-2 shadow-[0_18px_50px_rgba(17,24,39,0.12),0_2px_8px_rgba(17,24,39,0.06)]">
+              <div className="flex items-end gap-3 rounded-full border border-[#e7e9ef] bg-white p-2 shadow-[0_8px_16px_rgba(0,0,0,0.06)]">
                 <button
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-zinc-400 transition hover:bg-[#fafafa] hover:text-zinc-700"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-zinc-400 transition hover:bg-[#fafafa] hover:text-zinc-700"
                   type="button"
                   aria-label="Attach context"
                 >
@@ -153,11 +153,11 @@ export default async function MarketPage({ params }: MarketPageProps) {
                   rows={1}
                 />
                 <button
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-zinc-950 text-white transition hover:bg-zinc-800"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-zinc-950 text-white transition hover:bg-zinc-800"
                   type="button"
                   aria-label="Send prompt"
                 >
-                  <Send className="h-4 w-4" />
+                  <ArrowUp className="h-5 w-5" strokeWidth={2.4} />
                 </button>
               </div>
             </div>
