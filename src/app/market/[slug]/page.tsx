@@ -175,54 +175,40 @@ export default async function MarketPage({ params }: MarketPageProps) {
           </div>
         </section>
 
-        <section className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
-          <div>
-            <div className="flex items-center justify-between border-b border-[#ecece7] pb-3">
-              <h2 className="text-xl font-[680] leading-8 text-zinc-950">Comments</h2>
-              <span className="text-sm font-[500] text-zinc-400">Preview</span>
-            </div>
+        <section className="mt-10">
+          <div className="flex items-center justify-between border-b border-[#ecece7] pb-3">
+            <h2 className="text-xl font-[680] leading-8 text-zinc-950">Comments</h2>
+            <span className="text-sm font-[500] text-zinc-400">Preview</span>
+          </div>
 
-            <div className="mt-5 rounded-xl border border-[#e9e8e3] bg-white p-3">
-              <textarea
-                className="min-h-20 w-full resize-none bg-transparent p-2 text-sm font-[440] leading-6 text-zinc-700 outline-none placeholder:text-zinc-400"
-                placeholder="Share a thought or ask a question..."
-              />
-              <div className="mt-2 flex justify-end">
-                <button className="h-9 rounded-lg bg-zinc-950 px-4 text-sm font-[650] text-white transition hover:bg-zinc-800">
-                  Comment
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-5 space-y-5">
-              {commentPreviews.map((comment) => (
-                <article key={comment.author} className="flex gap-3">
-                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#d8dcff] via-[#b6e4d8] to-[#7b61ff] text-xs font-[700] text-white">
-                    {comment.author[0].toUpperCase()}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-[650] text-zinc-950">{comment.author}</p>
-                      <span className="text-xs font-[500] text-zinc-400">{comment.time}</span>
-                    </div>
-                    <p className="mt-1 text-sm font-[440] leading-6 text-zinc-500">{comment.text}</p>
-                  </div>
-                </article>
-              ))}
+          <div className="mt-5 rounded-xl border border-[#e9e8e3] bg-white p-3">
+            <textarea
+              className="min-h-20 w-full resize-none bg-transparent p-2 text-sm font-[440] leading-6 text-zinc-700 outline-none placeholder:text-zinc-400"
+              placeholder="Share a thought or ask a question..."
+            />
+            <div className="mt-2 flex justify-end">
+              <button className="h-9 rounded-lg bg-zinc-950 px-4 text-sm font-[650] text-white transition hover:bg-zinc-800">
+                Comment
+              </button>
             </div>
           </div>
 
-          <aside className="h-fit rounded-xl border border-[#e9e8e3] bg-white p-4">
-            <h2 className="text-sm font-[680] text-zinc-950">What this agent returns</h2>
-            <ul className="mt-3 space-y-2 text-sm font-[440] leading-6 text-zinc-500">
-              {market.deliverables.map((deliverable) => (
-                <li key={deliverable} className="flex gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-300" />
-                  {deliverable}
-                </li>
-              ))}
-            </ul>
-          </aside>
+          <div className="mt-5 space-y-5">
+            {commentPreviews.map((comment) => (
+              <article key={comment.author} className="flex gap-3">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#d8dcff] via-[#b6e4d8] to-[#7b61ff] text-xs font-[700] text-white">
+                  {comment.author[0].toUpperCase()}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-[650] text-zinc-950">{comment.author}</p>
+                    <span className="text-xs font-[500] text-zinc-400">{comment.time}</span>
+                  </div>
+                  <p className="mt-1 text-sm font-[440] leading-6 text-zinc-500">{comment.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       </section>
     </main>
