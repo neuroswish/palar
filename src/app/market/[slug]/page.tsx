@@ -131,7 +131,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
           <div className="relative min-h-[560px] bg-white">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-14 bg-gradient-to-b from-white via-white/85 to-transparent backdrop-blur-[2px]" />
 
-            <div className="absolute inset-0 flex flex-col gap-5 overflow-y-auto px-5 pb-32 pt-12 sm:px-6 lg:px-8">
+            <div className="absolute inset-0 flex flex-col gap-5 overflow-y-auto px-5 pb-32 pt-8 sm:px-6 lg:px-8">
               <div className="max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4">
                 <p className="text-sm font-[440] leading-6 text-zinc-500">
                   Start this market and I will gather the right inputs, run the agent, and show the output here.
@@ -233,12 +233,6 @@ export default async function MarketPage({ params }: MarketPageProps) {
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-xl font-[680] leading-8">
             <button className="text-zinc-950" type="button">
               Comments ({commentPreviews.length})
-            </button>
-            <button className="text-zinc-400 transition hover:text-zinc-700" type="button">
-              Top Holders
-            </button>
-            <button className="text-zinc-400 transition hover:text-zinc-700" type="button">
-              Positions
             </button>
             <button className="text-zinc-400 transition hover:text-zinc-700" type="button">
               Activity
