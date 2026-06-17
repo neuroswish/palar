@@ -108,15 +108,13 @@ export default async function MarketPage({ params }: MarketPageProps) {
           <div className="grid min-h-[520px] grid-rows-[1fr_auto] bg-white">
             <div className="flex flex-col gap-5 px-5 py-6 sm:px-6 lg:px-8">
               <div className="max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4">
-                <p className="text-sm font-[650] text-zinc-950">Ares</p>
-                <p className="mt-2 text-sm font-[440] leading-6 text-zinc-500">
+                <p className="text-sm font-[440] leading-6 text-zinc-500">
                   Start this market and I will gather the right inputs, run the agent, and show the output here.
                 </p>
               </div>
 
               <div className="ml-auto max-w-2xl rounded-2xl bg-zinc-950 p-4 text-white">
-                <p className="text-sm font-[650]">You</p>
-                <p className="mt-2 text-sm font-[440] leading-6 text-white/80">{market.examples[0]}</p>
+                <p className="text-sm font-[440] leading-6 text-white/80">{market.examples[0]}</p>
               </div>
 
               <div className="max-w-3xl rounded-2xl border border-[#eef0f4] bg-white p-4 shadow-[0_1px_2px_rgba(17,24,39,0.03)]">
