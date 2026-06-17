@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowUp, Paperclip } from "lucide-react";
+import { ArrowUp, Check, ChevronDown, ImageIcon, Paperclip, Shield, Smile } from "lucide-react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
@@ -165,20 +165,62 @@ export default async function MarketPage({ params }: MarketPageProps) {
         </section>
 
         <section className="mt-10">
-          <div className="flex items-center justify-between border-b border-[#ecece7] pb-3">
-            <h2 className="text-xl font-[680] leading-8 text-zinc-950">Comments</h2>
-            <span className="text-sm font-[500] text-zinc-400">Preview</span>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-xl font-[680] leading-8">
+            <button className="text-zinc-950" type="button">
+              Comments ({commentPreviews.length})
+            </button>
+            <button className="text-zinc-400 transition hover:text-zinc-700" type="button">
+              Top Holders
+            </button>
+            <button className="text-zinc-400 transition hover:text-zinc-700" type="button">
+              Positions
+            </button>
+            <button className="text-zinc-400 transition hover:text-zinc-700" type="button">
+              Activity
+            </button>
           </div>
 
-          <div className="mt-5 rounded-xl border border-[#e9e8e3] bg-white p-3">
-            <textarea
-              className="min-h-20 w-full resize-none bg-transparent p-2 text-sm font-[440] leading-6 text-zinc-700 outline-none placeholder:text-zinc-400"
-              placeholder="Share a thought or ask a question..."
+          <div className="mt-6 flex h-14 items-center gap-3 rounded-full border border-[#e2e5eb] bg-white px-4 shadow-[0_1px_2px_rgba(17,24,39,0.03)]">
+            <input
+              className="min-w-0 flex-1 bg-transparent text-base font-[440] text-zinc-700 outline-none placeholder:text-zinc-400"
+              placeholder="Add a comment..."
+              type="text"
             />
-            <div className="mt-2 flex justify-end">
-              <button className="h-9 rounded-lg bg-zinc-950 px-4 text-sm font-[650] text-white transition hover:bg-zinc-800">
-                Comment
+            <button
+              aria-label="Add emoji"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-zinc-500 transition hover:bg-[#fafafa] hover:text-zinc-800"
+              type="button"
+            >
+              <Smile className="h-5 w-5" />
+            </button>
+            <button
+              aria-label="Attach image"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-zinc-500 transition hover:bg-[#fafafa] hover:text-zinc-800"
+              type="button"
+            >
+              <ImageIcon className="h-5 w-5" />
+            </button>
+            <button className="h-10 shrink-0 rounded-xl bg-[#91a7ff] px-5 text-sm font-[680] text-white transition hover:bg-[#7f98ff]" type="button">
+              Post
+            </button>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-5">
+              <button className="flex items-center gap-2 text-base font-[600] text-zinc-950" type="button">
+                Newest
+                <ChevronDown className="h-4 w-4" />
               </button>
+              <label className="flex items-center gap-2 text-base font-[600] text-zinc-950">
+                <span className="grid h-6 w-6 place-items-center rounded-md bg-[#2457f5] text-white">
+                  <Check className="h-4 w-4" strokeWidth={2.5} />
+                </span>
+                Holders
+              </label>
+            </div>
+            <div className="flex h-10 items-center gap-2 rounded-full bg-[#f4f5f7] px-4 text-sm font-[650] text-zinc-500">
+              <Shield className="h-4 w-4" />
+              Beware of external links.
             </div>
           </div>
 
