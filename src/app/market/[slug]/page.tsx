@@ -105,8 +105,10 @@ export default async function MarketPage({ params }: MarketPageProps) {
         </div>
 
         <section className="mt-10 overflow-hidden rounded-2xl border border-[#e2e7f4] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.04)]">
-          <div className="grid min-h-[520px] grid-rows-[1fr_auto] bg-white">
-            <div className="flex flex-col gap-5 px-5 py-6 sm:px-6 lg:px-8">
+          <div className="relative min-h-[560px] bg-white">
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-14 bg-gradient-to-b from-white via-white/85 to-transparent backdrop-blur-[2px]" />
+
+            <div className="absolute inset-0 flex flex-col gap-5 overflow-y-auto px-5 pb-32 pt-12 sm:px-6 lg:px-8">
               <div className="max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4">
                 <p className="text-sm font-[440] leading-6 text-zinc-500">
                   Start this market and I will gather the right inputs, run the agent, and show the output here.
@@ -135,10 +137,11 @@ export default async function MarketPage({ params }: MarketPageProps) {
               </div>
             </div>
 
-            <div className="border-t border-[#eef0f4] bg-[#fbfcff] p-4 sm:p-5">
-              <div className="flex items-end gap-3 rounded-xl border border-[#e7e9ef] bg-white p-2 shadow-[0_1px_2px_rgba(17,24,39,0.04)]">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-white via-white/90 to-transparent" />
+            <div className="absolute inset-x-5 bottom-5 z-30 sm:inset-x-6 lg:inset-x-8">
+              <div className="flex items-end gap-3 rounded-2xl border border-[#e7e9ef] bg-white p-2 shadow-[0_18px_50px_rgba(17,24,39,0.12),0_2px_8px_rgba(17,24,39,0.06)]">
                 <button
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-lg text-zinc-400 transition hover:bg-[#fafafa] hover:text-zinc-700"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-zinc-400 transition hover:bg-[#fafafa] hover:text-zinc-700"
                   type="button"
                   aria-label="Attach context"
                 >
@@ -150,7 +153,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
                   rows={1}
                 />
                 <button
-                  className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-zinc-950 text-white transition hover:bg-zinc-800"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-zinc-950 text-white transition hover:bg-zinc-800"
                   type="button"
                   aria-label="Send prompt"
                 >
