@@ -105,18 +105,6 @@ export default async function MarketPage({ params }: MarketPageProps) {
         </div>
 
         <section className="mt-10 overflow-hidden rounded-2xl border border-[#e2e7f4] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.04)]">
-          <div className="border-b border-[#eef0f4] bg-[#fbfcff] px-5 py-4 sm:px-6">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-xs font-[650] uppercase tracking-[0.08em] text-zinc-400">Agent workspace</p>
-                <p className="mt-1 text-sm font-[500] text-zinc-500">{market.brief}</p>
-              </div>
-              <button className="h-10 rounded-lg bg-zinc-950 px-5 text-sm font-[650] text-white transition hover:bg-zinc-800">
-                Start
-              </button>
-            </div>
-          </div>
-
           <div className="grid min-h-[520px] grid-rows-[1fr_auto] bg-white">
             <div className="flex flex-col gap-5 px-5 py-6 sm:px-6 lg:px-8">
               <div className="max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4">
