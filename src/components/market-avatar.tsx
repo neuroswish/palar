@@ -8,8 +8,8 @@ type MarketAvatarProps = Pick<Market, "accent" | "avatar" | "image" | "imageAlt"
 };
 
 export function MarketAvatar({ accent, avatar, image, imageAlt, emoji, size = "sm" }: MarketAvatarProps) {
-  const shellSize = size === "lg" ? "h-16 w-16 rounded-md" : "h-[38px] w-[38px] rounded-sm";
-  const imageSize = size === "lg" ? "64px" : "38px";
+  const shellSize = size === "lg" ? "h-20 w-20 rounded-md" : "h-[38px] w-[38px] rounded-sm";
+  const imageSize = size === "lg" ? "80px" : "38px";
 
   return (
     <div
@@ -19,7 +19,7 @@ export function MarketAvatar({ accent, avatar, image, imageAlt, emoji, size = "s
         <Image className="object-contain" src={image} alt={imageAlt ?? ""} fill sizes={imageSize} />
       ) : null}
       {avatar === "emoji" && emoji ? (
-        <span className={size === "lg" ? "text-3xl leading-none" : "text-xl leading-none"}>{emoji}</span>
+        <span className={size === "lg" ? "text-4xl leading-none" : "text-xl leading-none"}>{emoji}</span>
       ) : null}
       {avatar === "dot" ? <span className="h-5 w-5 rounded-full bg-[#090b18]" /> : null}
       {avatar === "burst" ? (

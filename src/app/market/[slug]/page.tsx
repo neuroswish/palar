@@ -90,13 +90,13 @@ export default async function MarketPage({ params }: MarketPageProps) {
               emoji={market.emoji}
               size="lg"
             />
-            <div className="flex min-h-16 min-w-0 flex-1 flex-col justify-center">
+            <div className="flex min-h-20 min-w-0 flex-1 flex-col justify-center">
               <div className="flex flex-wrap items-center gap-2 text-base font-[500] leading-6 text-zinc-500">
                 <span>{market.users}</span>
                 <span className="text-zinc-300">·</span>
                 <span>{market.category}</span>
               </div>
-              <h1 className="mt-1 text-[34px] font-[680] leading-[1.08] tracking-normal text-zinc-950 sm:text-[44px]">
+              <h1 className="mt-1 text-[34px] font-[680] leading-[1.08] tracking-normal text-zinc-950 sm:text-[40px]">
                 {market.name}
               </h1>
             </div>
