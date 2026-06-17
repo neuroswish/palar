@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArrowUp, Check, ChevronDown, ImageIcon, Paperclip, Shield, Smile } from "lucide-react";
+import { ArrowUp, ImageIcon, Paperclip, Smile } from "lucide-react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
@@ -270,26 +270,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
             </button>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-5">
-              <button className="flex items-center gap-2 text-base font-[600] text-zinc-950" type="button">
-                Newest
-                <ChevronDown className="h-4 w-4" />
-              </button>
-              <label className="flex items-center gap-2 text-base font-[600] text-zinc-950">
-                <span className="grid h-6 w-6 place-items-center rounded-md bg-[#2457f5] text-white">
-                  <Check className="h-4 w-4" strokeWidth={2.5} />
-                </span>
-                Holders
-              </label>
-            </div>
-            <div className="flex h-10 items-center gap-2 rounded-full bg-[#f4f5f7] px-4 text-sm font-[650] text-zinc-500">
-              <Shield className="h-4 w-4" />
-              Beware of external links.
-            </div>
-          </div>
-
-          <div className="mt-5 space-y-5">
+          <div className="mt-6 space-y-5">
             {commentPreviews.map((comment) => (
               <article key={comment.author} className="flex gap-3">
                 <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#d8dcff] via-[#b6e4d8] to-[#7b61ff] text-xs font-[700] text-white">
