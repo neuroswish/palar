@@ -230,7 +230,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
         </section>
 
         <section className="mt-10">
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-xl font-[680] leading-8">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-xl font-[560] leading-8">
             <button className="text-zinc-950" type="button">
               Comments ({commentPreviews.length})
             </button>
