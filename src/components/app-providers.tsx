@@ -24,7 +24,14 @@ export function AppProviders({ children }: { children: ReactNode }) {
           accentColor: "#09090b",
           landingHeader: "Sign in to Ares",
           loginMessage: "Enter your email to continue.",
+          walletList: [],
           walletChainType: "solana-only",
+        },
+        externalWallets: {
+          disableAllExternalWallets: true,
+          walletConnect: {
+            enabled: false,
+          },
         },
         embeddedWallets: {
           solana: {
