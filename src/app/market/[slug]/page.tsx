@@ -129,7 +129,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
 
         <section className="mt-10 overflow-hidden rounded-2xl border border-[#e2e7f4] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.04)]">
           <div className="relative min-h-[560px] bg-white">
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-14 bg-gradient-to-b from-white via-white/85 to-transparent backdrop-blur-[2px]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 bg-gradient-to-b from-white via-white/75 to-transparent backdrop-blur-[1px]" />
 
             <div className="absolute inset-0 flex flex-col gap-5 overflow-y-auto px-5 pb-32 pt-8 sm:px-6 lg:px-8">
               <div className="max-w-2xl rounded-2xl border border-[#eef0f4] bg-[#fafafa] p-4">
