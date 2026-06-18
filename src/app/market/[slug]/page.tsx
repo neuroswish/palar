@@ -5,6 +5,7 @@ import { ArrowUp, ImageIcon, Paperclip, Smile } from "lucide-react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
+import { MarketWorkspaceScroller } from "@/components/market-workspace-scroller";
 import { getMarketBySlug, markets } from "@/lib/markets";
 
 type MarketPageProps = {
@@ -34,6 +35,36 @@ const commentPreviews = [
     author: "sam",
     text: "Would pay for this if it can compare the top options without making me open six tabs.",
     time: "1h",
+  },
+  {
+    author: "nina",
+    text: "Would be cool if people could share the exact prompt that got a good result.",
+    time: "2h",
+  },
+  {
+    author: "eli",
+    text: "I want this for limited merch drops too. Half the work is just knowing which store has inventory.",
+    time: "3h",
+  },
+  {
+    author: "ari",
+    text: "If it can remember sizing preferences and brands, this becomes a really useful repeat-use agent.",
+    time: "5h",
+  },
+  {
+    author: "dev",
+    text: "The local pickup angle is strong. I do not want another generic shopping search result.",
+    time: "6h",
+  },
+  {
+    author: "lee",
+    text: "A confidence score would help a lot, especially when inventory APIs are stale.",
+    time: "9h",
+  },
+  {
+    author: "kim",
+    text: "This would be useful around gift shopping too. Search is weirdly bad for in-store availability.",
+    time: "12h",
   },
 ];
 
@@ -131,7 +162,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
           <div className="relative min-h-[560px] bg-white">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 bg-gradient-to-b from-white via-white/75 to-transparent backdrop-blur-[1px]" />
 
-            <div className="absolute inset-0 flex flex-col gap-5 overflow-y-auto overscroll-y-contain px-5 pb-32 pt-8 sm:px-6 lg:px-8">
+            <MarketWorkspaceScroller className="absolute inset-0 flex flex-col gap-5 overflow-y-auto overscroll-y-contain px-5 pb-32 pt-8 sm:px-6 lg:px-8">
               <div className="ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-4 py-2.5">
                 <p className="text-sm font-[440] leading-6 text-zinc-500">
                   Start this market and I will gather the right inputs, run the agent, and show the output here.
@@ -200,7 +231,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
                   </p>
                 </div>
               ))}
-            </div>
+            </MarketWorkspaceScroller>
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-white via-white/90 to-transparent" />
             <div className="absolute inset-x-5 bottom-4 z-30 sm:inset-x-6 lg:inset-x-8">
