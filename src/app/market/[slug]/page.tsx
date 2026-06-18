@@ -127,7 +127,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
           <p className="mt-5 max-w-3xl text-base font-[440] leading-7 text-zinc-500 sm:text-lg">{market.description}</p>
         </div>
 
-        <section className="mt-10 overflow-hidden rounded-2xl border border-[#e2e7f4] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.04)]">
+        <section className="mt-10 overflow-hidden rounded-[18px] border border-[#e2e7f4] bg-white shadow-[0_1px_2px_rgba(17,24,39,0.04)]">
           <div className="relative min-h-[560px] bg-white">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 bg-gradient-to-b from-white via-white/75 to-transparent backdrop-blur-[1px]" />
 
@@ -203,7 +203,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
             </div>
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-white via-white/90 to-transparent" />
-            <div className="absolute inset-x-5 bottom-5 z-30 sm:inset-x-6 lg:inset-x-8">
+            <div className="absolute inset-x-5 bottom-4 z-30 sm:inset-x-6 lg:inset-x-8">
               <div className="flex items-end gap-3 rounded-full border border-[#e7e9ef] bg-white p-2 shadow-[0_8px_16px_rgba(0,0,0,0.06)]">
                 <button
                   className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-zinc-400 transition hover:bg-[#fafafa] hover:text-zinc-700"
