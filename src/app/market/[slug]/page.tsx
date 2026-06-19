@@ -163,13 +163,13 @@ export default async function MarketPage({ params }: MarketPageProps) {
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-7 bg-gradient-to-b from-white via-white/75 to-transparent backdrop-blur-[1px]" />
 
             <MarketWorkspaceScroller className="absolute inset-0 flex flex-col gap-5 overflow-y-auto overscroll-y-contain px-5 pb-32 pt-8 sm:px-6 lg:px-8">
-              <div className="ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-4 py-2.5">
+              <div className="ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-5 py-3">
                 <p className="text-sm font-[440] leading-6 text-zinc-500">
                   Start this market and I will gather the right inputs, run the agent, and show the output here.
                 </p>
               </div>
 
-              <div className="ml-auto mr-1 max-w-2xl rounded-full bg-zinc-950 px-4 py-2.5 text-white">
+              <div className="ml-auto mr-1 max-w-2xl rounded-full bg-zinc-950 px-5 py-3 text-white">
                 <p className="text-sm font-[440] leading-6 text-white/80">{market.examples[0]}</p>
               </div>
 
@@ -177,8 +177,8 @@ export default async function MarketPage({ params }: MarketPageProps) {
                 <div
                   className={
                     message.side === "user"
-                      ? "ml-auto mr-1 max-w-2xl rounded-full bg-zinc-950 px-4 py-2.5 text-white"
-                      : "ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-4 py-2.5"
+                      ? "ml-auto mr-1 max-w-2xl rounded-full bg-zinc-950 px-5 py-3 text-white"
+                      : "ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-5 py-3"
                   }
                   key={message.text}
                 >
@@ -215,8 +215,8 @@ export default async function MarketPage({ params }: MarketPageProps) {
                 <div
                   className={
                     message.side === "user"
-                      ? "ml-auto mr-1 max-w-2xl rounded-full bg-zinc-950 px-4 py-2.5 text-white"
-                      : "ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-4 py-2.5"
+                      ? "ml-auto mr-1 max-w-2xl rounded-full bg-zinc-950 px-5 py-3 text-white"
+                      : "ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-5 py-3"
                   }
                   key={message.text}
                 >
