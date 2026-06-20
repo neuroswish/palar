@@ -150,19 +150,19 @@ export function MarketBrowser() {
   return (
     <main className="min-h-screen bg-white text-[#262626]">
       <header className="fixed inset-x-0 top-0 z-10 bg-white/90 backdrop-blur">
-        <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
-          <div className="flex min-w-0 items-center gap-5">
+        <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center px-4 sm:px-6">
+          <div className="absolute left-4 flex min-w-0 items-center gap-5 sm:left-6">
             <Link className="flex shrink-0 items-center gap-2" href="/">
               <span className="text-base font-semibold tracking-normal">ares</span>
             </Link>
           </div>
           <MarketSearch
-            className="absolute left-1/2 hidden w-[min(620px,calc(100%_-_420px))] -translate-x-1/2 md:block"
+            className="mx-auto hidden w-full max-w-[620px] md:block"
             inputRef={desktopSearchRef}
             query={query}
             setQuery={setQuery}
           />
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="absolute right-4 flex shrink-0 items-center gap-2 sm:right-6">
             <AuthButton />
           </div>
         </div>
