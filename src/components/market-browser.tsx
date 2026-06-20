@@ -153,7 +153,7 @@ export function MarketBrowser() {
         <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center px-4 sm:px-6">
           <div className="absolute left-4 flex min-w-0 items-center gap-5 sm:left-6">
             <Link className="flex shrink-0 items-center gap-2" href="/">
-              <span className="text-base font-semibold tracking-normal">ares</span>
+              <span className="text-lg font-semibold tracking-normal">ares</span>
             </Link>
           </div>
           <MarketSearch
