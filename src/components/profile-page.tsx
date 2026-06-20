@@ -24,7 +24,7 @@ export function ProfilePage() {
       <header className="fixed inset-x-0 top-0 z-10 bg-white/90 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           <Link className="flex shrink-0 items-center gap-2" href="/">
-            <span className="text-base font-semibold tracking-normal">Ares</span>
+            <span className="text-base font-semibold tracking-normal">ares</span>
           </Link>
           <AuthButton />
         </div>

@@ -120,7 +120,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
       <header className="fixed inset-x-0 top-0 z-10 border-b border-transparent bg-white/80 backdrop-blur">
         <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link className="flex items-center gap-2" href="/">
-            <span className="text-base font-semibold tracking-normal">Ares</span>
+            <span className="text-base font-semibold tracking-normal">ares</span>
           </Link>
           <div className="flex items-center gap-2">
             <AuthButton />
