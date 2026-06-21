@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { usePrivy } from "@privy-io/react-auth";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { ArrowRight, Plus, Sparkles } from "lucide-react";
 
 import { AuthButton } from "@/components/auth-button";
@@ -72,6 +75,57 @@ function FieldLabel({ children }: { children: string }) {
 }
 
 function CreateForm() {
+  const router = useRouter();
+  const { getAccessToken, user } = usePrivy();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState(categoryOptions[0]);
+  const [price, setPrice] = useState("");
+  const [brief, setBrief] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      const accessToken = await getAccessToken();
+
+      if (!accessToken) {
+        throw new Error("You need to be signed in to create a market.");
+      }
+
+      const response = await fetch("/api/markets", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          description,
+          category,
+          price,
+          brief,
+          creatorEmail: user?.email?.address,
+        }),
+      });
+      const result = (await response.json()) as { slug?: string; error?: string };
+
+      if (!response.ok || !result.slug) {
+        throw new Error(result.error ?? "Unable to create market.");
+      }
+
+      router.push(`/market/${result.slug}`);
+    } catch (requestError) {
+      setError(requestError instanceof Error ? requestError.message : "Unable to create market.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white text-[#262626]">
       <CreateHeader />
@@ -85,19 +139,27 @@ function CreateForm() {
             Create a market people can hire.
           </h1>
           <p className="mt-4 max-w-xl text-base font-[440] leading-7 text-zinc-500">
-            Define what the agent does, what inputs it needs, and what a good result should include. This is a draft UI for
-            now; publishing will be wired up later.
+            Define what the agent does, what inputs it needs, and what a good result should include. Published markets become
+            available to everyone immediately.
           </p>
         </div>
 
-        <form className="mx-auto mt-10 max-w-2xl rounded-2xl border border-[#e6e8ee] bg-white p-4 shadow-[0_1px_2px_rgba(17,24,39,0.04)] sm:p-5">
+        <form
+          className="mx-auto mt-10 max-w-2xl rounded-2xl border border-[#e6e8ee] bg-white p-4 shadow-[0_1px_2px_rgba(17,24,39,0.04)] sm:p-5"
+          onSubmit={handleSubmit}
+        >
           <div className="space-y-5">
             <label className="block">
               <FieldLabel>Market title</FieldLabel>
               <input
                 className="mt-2 h-11 w-full rounded-xl border border-[#e3e5eb] bg-white px-3 text-sm font-[440] text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-400"
+                maxLength={90}
+                minLength={3}
+                onChange={(event) => setName(event.target.value)}
                 placeholder="Find limited edition sneakers"
+                required
                 type="text"
+                value={name}
               />
             </label>
 
@@ -105,14 +167,23 @@ function CreateForm() {
               <FieldLabel>Description</FieldLabel>
               <textarea
                 className="mt-2 min-h-24 w-full resize-none rounded-xl border border-[#e3e5eb] bg-white px-3 py-3 text-sm font-[440] leading-6 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-400"
+                maxLength={280}
+                minLength={10}
+                onChange={(event) => setDescription(event.target.value)}
                 placeholder="Describe the outcome a user should get from this agent."
+                required
+                value={description}
               />
             </label>
 
             <div className="grid gap-4 sm:grid-cols-[1fr_160px]">
               <label className="block">
                 <FieldLabel>Category</FieldLabel>
-                <select className="mt-2 h-11 w-full rounded-xl border border-[#e3e5eb] bg-white px-3 text-sm font-[440] text-zinc-950 outline-none transition focus:border-zinc-400">
+                <select
+                  className="mt-2 h-11 w-full rounded-xl border border-[#e3e5eb] bg-white px-3 text-sm font-[440] text-zinc-950 outline-none transition focus:border-zinc-400"
+                  onChange={(event) => setCategory(event.target.value)}
+                  value={category}
+                >
                   {categoryOptions.map((category) => (
                     <option key={category}>{category}</option>
                   ))}
@@ -122,8 +193,10 @@ function CreateForm() {
                 <FieldLabel>Starting price</FieldLabel>
                 <input
                   className="mt-2 h-11 w-full rounded-xl border border-[#e3e5eb] bg-white px-3 text-sm font-[440] text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-400"
+                  onChange={(event) => setPrice(event.target.value)}
                   placeholder="$5.00"
                   type="text"
+                  value={price}
                 />
               </label>
             </div>
@@ -132,7 +205,9 @@ function CreateForm() {
               <FieldLabel>First prompt</FieldLabel>
               <textarea
                 className="mt-2 min-h-28 w-full resize-none rounded-xl border border-[#e3e5eb] bg-white px-3 py-3 text-sm font-[440] leading-6 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-400"
+                onChange={(event) => setBrief(event.target.value)}
                 placeholder="What should the agent ask for when someone starts this market?"
+                value={brief}
               />
             </label>
 
@@ -160,12 +235,13 @@ function CreateForm() {
           </div>
 
           <div className="mt-6 flex items-center justify-between border-t border-[#eceef3] pt-4">
-            <p className="text-xs font-[500] text-zinc-400">Draft only</p>
+            <p className="text-xs font-[500] text-zinc-400">{error ?? "Publishes immediately"}</p>
             <button
-              className="inline-flex h-10 items-center gap-2 rounded-md bg-zinc-950 px-4 text-sm font-[560] text-white transition hover:bg-zinc-800"
-              type="button"
+              className="inline-flex h-10 items-center gap-2 rounded-md bg-zinc-950 px-4 text-sm font-[560] text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-70"
+              disabled={isSubmitting}
+              type="submit"
             >
-              Preview market
+              {isSubmitting ? "Publishing..." : "Publish market"}
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

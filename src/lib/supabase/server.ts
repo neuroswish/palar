@@ -12,3 +12,18 @@ export function getSupabaseServerClient() {
     },
   });
 }
+
+export function getSupabaseServiceClient() {
+  const { url } = getSupabaseConfig();
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!serviceRoleKey) {
+    throw new Error("Supabase service role key is not configured. Set SUPABASE_SERVICE_ROLE_KEY.");
+  }
+
+  return createClient<Database>(url, serviceRoleKey, {
+    auth: {
+      persistSession: false,
+    },
+  });
+}

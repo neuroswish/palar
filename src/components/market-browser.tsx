@@ -7,9 +7,8 @@ import type { RefObject } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
-import { markets, type Market } from "@/lib/markets";
+import type { Market } from "@/lib/markets";
 
-const marketCategories = Array.from(new Set(markets.map((market) => market.category)));
 const testCategories = [
   "Travel",
   "Food",
@@ -24,7 +23,6 @@ const testCategories = [
   "Collectibles",
   "Wellness",
 ];
-const categories = ["All", ...marketCategories, ...testCategories];
 
 function MarketCard({ market }: { market: Market }) {
   return (
@@ -96,11 +94,16 @@ function MarketSearch({
   );
 }
 
-export function MarketBrowser() {
+export function MarketBrowser({ markets }: { markets: Market[] }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [query, setQuery] = useState("");
   const desktopSearchRef = useRef<HTMLInputElement | null>(null);
   const mobileSearchRef = useRef<HTMLInputElement | null>(null);
+  const categories = useMemo(() => {
+    const marketCategories = Array.from(new Set(markets.map((market) => market.category)));
+
+    return ["All", ...marketCategories, ...testCategories];
+  }, [markets]);
 
   const focusSearch = () => {
     const searchInputs = [desktopSearchRef.current, mobileSearchRef.current];
@@ -145,7 +148,7 @@ export function MarketBrowser() {
 
       return categoryMatches && queryMatches;
     });
-  }, [activeCategory, query]);
+  }, [activeCategory, markets, query]);
 
   return (
     <main className="min-h-screen bg-white text-[#262626]">

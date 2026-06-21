@@ -6,7 +6,7 @@ import { ArrowUp, ImageIcon, Paperclip, Smile } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
 import { MarketWorkspaceScroller } from "@/components/market-workspace-scroller";
-import { getMarketBySlug, markets } from "@/lib/markets";
+import { getMarketBySlug, getMarketSlugs } from "@/lib/markets";
 
 type MarketPageProps = {
   params: Promise<{
@@ -14,9 +14,13 @@ type MarketPageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return markets.map((market) => ({
-    slug: market.slug,
+export const dynamic = "force-dynamic";
+
+export async function generateStaticParams() {
+  const slugs = await getMarketSlugs();
+
+  return slugs.map((slug) => ({
+    slug,
   }));
 }
 
@@ -93,7 +97,7 @@ const dummyChatMessages = [
 
 export async function generateMetadata({ params }: MarketPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const market = getMarketBySlug(slug);
+  const market = await getMarketBySlug(slug);
 
   if (!market) {
     return {
@@ -109,7 +113,7 @@ export async function generateMetadata({ params }: MarketPageProps): Promise<Met
 
 export default async function MarketPage({ params }: MarketPageProps) {
   const { slug } = await params;
-  const market = getMarketBySlug(slug);
+  const market = await getMarketBySlug(slug);
 
   if (!market) {
     notFound();
