@@ -30,8 +30,8 @@ export default function AboutPage() {
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
         <div className="max-w-none">
-          <h1 className="max-w-[1180px] text-[44px] font-[430] leading-[1.12] tracking-normal text-zinc-950 sm:text-[58px] lg:text-[70px]">
-            Democratize Intelligence
+          <h1 className="max-w-[1220px] text-[38px] font-[300] leading-[1.12] tracking-normal text-zinc-950 sm:text-[50px] lg:text-[62px]">
+            Ares is a marketplace to <span className="whitespace-nowrap">democratize superintelligence.</span>
           </h1>
           <p className="mt-8 max-w-3xl text-lg font-[430] leading-8 text-zinc-500">
             Ares is an AI marketplace. Create your own custom AIs and share them with the world.
