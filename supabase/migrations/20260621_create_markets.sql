@@ -264,6 +264,32 @@ insert into public.markets (
     array['Series B fintech buyers', 'NYC hospitality operators', 'enterprise AI budget owners'],
     array['Prioritized account list', 'Buyer signals and contact paths', 'Personalized outreach angles'],
     'published'
+  ),
+  (
+    'seed',
+    null,
+    'Personal Trainer',
+    'personal-trainer',
+    'get tailored advice for your fitness goals',
+    'Health & Fitness',
+    '$0.02/1k tokens',
+    '12.5K plays',
+    12500,
+    'from-white to-zinc-50',
+    'emoji',
+    null,
+    null,
+    '🏋️',
+    null,
+    '$612K',
+    '12,504',
+    '34',
+    '95%',
+    'Tell us your goal, current routine, equipment access, injuries, schedule, and nutrition constraints.',
+    '5-10 min',
+    array['build muscle with 3 gym days', 'fat loss plan at home', 'mobility routine for tight hips'],
+    array['Personalized weekly training plan', 'Progression targets and recovery notes', 'Nutrition and habit recommendations'],
+    'published'
   )
 on conflict (slug) do update set
   name = excluded.name,

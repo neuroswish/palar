@@ -95,6 +95,33 @@ const dummyChatMessages = [
   },
 ];
 
+const personalTrainerChatMessages = [
+  {
+    side: "agent",
+    text: "I can build a plan around your goal, schedule, equipment, training history, and any injuries. Tell me what you want to change first.",
+  },
+  {
+    side: "user",
+    text: "I want to gain muscle, train 4 days per week, and avoid aggravating my lower back.",
+  },
+  {
+    side: "agent",
+    text: "Got it. I would bias toward upper/lower strength days, controlled hinge volume, core stability work, and a simple protein target before adding extra complexity.",
+  },
+  {
+    side: "user",
+    text: "I have a full gym and about 60 minutes per session. I also want two short cardio days.",
+  },
+  {
+    side: "agent",
+    text: "Once started, I would return a weekly plan with exercise selection, sets, reps, progression targets, recovery notes, and nutrition habits matched to your goal.",
+  },
+];
+
+function getChatMessages(market: { slug: string }) {
+  return market.slug === "personal-trainer" ? personalTrainerChatMessages : dummyChatMessages;
+}
+
 export async function generateMetadata({ params }: MarketPageProps): Promise<Metadata> {
   const { slug } = await params;
   const market = await getMarketBySlug(slug);
@@ -118,6 +145,8 @@ export default async function MarketPage({ params }: MarketPageProps) {
   if (!market) {
     notFound();
   }
+
+  const chatMessages = getChatMessages(market);
 
   return (
     <main className="min-h-screen bg-white text-[#262626]">
@@ -172,7 +201,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
                 <p className="text-sm font-[440] leading-6 text-white/80">{market.examples[0]}</p>
               </div>
 
-              {dummyChatMessages.slice(0, 2).map((message) => (
+              {chatMessages.slice(0, 2).map((message) => (
                 <div
                   className={
                     message.side === "user"
@@ -210,7 +239,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
                 </ul>
               </div>
 
-              {dummyChatMessages.slice(2).map((message) => (
+              {chatMessages.slice(2).map((message) => (
                 <div
                   className={
                     message.side === "user"
