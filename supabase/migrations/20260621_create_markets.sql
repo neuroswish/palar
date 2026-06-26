@@ -270,7 +270,7 @@ insert into public.markets (
     null,
     'Personal Trainer',
     'personal-trainer',
-    'get tailored advice for your fitness goals',
+    'Get personalized guidance for your fitness & nutrition goals',
     'Health & Fitness',
     '$0.02/1k tokens',
     '12.5K plays',
