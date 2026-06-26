@@ -64,37 +64,37 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <section className="mt-28 max-w-6xl">
+        <section className="mt-24 max-w-5xl">
           <div>
-            <h2 className="text-[34px] font-[430] leading-tight tracking-normal text-zinc-950 sm:text-[42px]">
+            <h2 className="text-[28px] font-[430] leading-tight tracking-normal text-zinc-950 sm:text-[32px]">
               Documentation
             </h2>
-            <p className="mt-3 text-[22px] font-[360] leading-8 text-zinc-400">
+            <p className="mt-3 text-lg font-[360] leading-7 text-zinc-400">
               Create markets, run agents, and build with Ares.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_190px] lg:items-center">
-            <div className="flex h-[76px] items-center justify-between rounded-xl border border-[#e9e8e3] bg-[#fafafa] px-6">
-              <code className="truncate font-mono text-[22px] font-[400] text-zinc-800">
+          <div className="mt-7 grid gap-4 lg:grid-cols-[minmax(0,1fr)_150px] lg:items-center">
+            <div className="flex h-16 items-center justify-between rounded-xl border border-[#e9e8e3] bg-[#fafafa] px-5">
+              <code className="truncate font-mono text-base font-[400] text-zinc-800 sm:text-lg">
                 https://ares.market/docs/llms.txt
               </code>
-              <Copy className="ml-4 h-6 w-6 shrink-0 text-zinc-300" strokeWidth={1.8} />
+              <Copy className="ml-4 h-5 w-5 shrink-0 text-zinc-300" strokeWidth={1.8} />
             </div>
-            <p className="text-[22px] font-[360] leading-7 text-zinc-400">
+            <p className="text-base font-[360] leading-6 text-zinc-400 sm:text-lg">
               LLM-friendly
               <br />
               plain text
             </p>
           </div>
 
-          <div className="mt-20">
-            <p className="text-[22px] font-[430] uppercase tracking-normal text-zinc-400">Contents</p>
-            <div className="mt-6 border-t border-[#ecece7] pt-5">
-              <nav className="flex flex-col gap-4">
+          <div className="mt-16">
+            <p className="text-base font-[430] uppercase tracking-normal text-zinc-400">Contents</p>
+            <div className="mt-5 border-t border-[#ecece7] pt-5">
+              <nav className="flex flex-col gap-3">
                 {contents.map((item) => (
                   <a
-                    className="text-[22px] font-[360] leading-7 text-zinc-400 transition hover:text-zinc-700"
+                    className="text-lg font-[360] leading-6 text-zinc-400 transition hover:text-zinc-700"
                     href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
                     key={item}
                   >
@@ -105,19 +105,19 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-20 space-y-20">
+          <div className="mt-16 space-y-16">
             {sections.map((section) => (
               <section id={section.eyebrow.toLowerCase().replaceAll(" ", "-")} key={section.eyebrow}>
-                <p className="border-b border-[#ecece7] pb-5 text-[22px] font-[430] uppercase tracking-normal text-zinc-400">
+                <p className="border-b border-[#ecece7] pb-4 text-base font-[430] uppercase tracking-normal text-zinc-400">
                   {section.eyebrow}
                 </p>
                 {section.title ? (
-                  <h3 className="mt-10 text-[26px] font-[430] leading-tight text-zinc-950">{section.title}</h3>
+                  <h3 className="mt-8 text-xl font-[430] leading-tight text-zinc-950">{section.title}</h3>
                 ) : null}
-                <p className="mt-5 max-w-5xl text-[22px] font-[360] leading-9 text-zinc-400">{section.body}</p>
+                <p className="mt-4 max-w-4xl text-lg font-[360] leading-8 text-zinc-400">{section.body}</p>
                 {section.code ? (
-                  <div className="mt-6 rounded-xl border border-[#e9e8e3] bg-[#fafafa] px-6 py-6">
-                    <code className="font-mono text-[20px] font-[400] leading-8 text-zinc-900">
+                  <div className="mt-5 rounded-xl border border-[#e9e8e3] bg-[#fafafa] px-5 py-5">
+                    <code className="font-mono text-base font-[400] leading-7 text-zinc-900">
                       {section.code}
                     </code>
                   </div>
