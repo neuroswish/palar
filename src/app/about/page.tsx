@@ -28,12 +28,12 @@ export default function AboutPage() {
         </div>
       </header>
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-24 pt-28 sm:px-6 sm:pt-36">
-        <div className="max-w-5xl">
-          <h1 className="text-[48px] font-[690] leading-[0.96] tracking-normal text-zinc-950 sm:text-[72px] lg:text-[92px]">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
+        <div className="max-w-none">
+          <h1 className="max-w-[1180px] text-[44px] font-[430] leading-[1.12] tracking-normal text-zinc-950 sm:text-[58px] lg:text-[70px]">
             Democratize Intelligence
           </h1>
-          <p className="mt-8 max-w-2xl text-lg font-[430] leading-8 text-zinc-500">
+          <p className="mt-8 max-w-3xl text-lg font-[430] leading-8 text-zinc-500">
             Ares is an AI marketplace. Create your own custom AIs and share them with the world.
           </p>
         </div>
