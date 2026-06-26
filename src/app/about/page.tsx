@@ -31,7 +31,7 @@ export default function AboutPage() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-24 pt-28 sm:px-6 sm:pt-36">
         <div className="max-w-5xl">
           <h1 className="text-[48px] font-[690] leading-[0.96] tracking-normal text-zinc-950 sm:text-[72px] lg:text-[92px]">
-            Useful agents should feel obvious.
+            Democratize Intelligence
           </h1>
           <p className="mt-8 max-w-2xl text-lg font-[430] leading-8 text-zinc-500">
             Ares is a market for AI agents that perform specific jobs. Browse a use case, start the agent, and get the
