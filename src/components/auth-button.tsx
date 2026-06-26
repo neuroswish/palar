@@ -159,13 +159,13 @@ function PrivyAuthButton() {
                   <Settings className="h-4 w-4 text-zinc-400" />
                   Settings
                 </button>
-                <button
+                <Link
                   className="flex h-10 w-full items-center gap-3 px-3 text-left text-sm font-[500] text-zinc-700 transition hover:bg-[#fafafa] hover:text-zinc-950"
-                  type="button"
+                  href="/about"
                 >
                   <Info className="h-4 w-4 text-zinc-400" />
                   About
-                </button>
+                </Link>
                 <div className="my-1 h-px bg-[#ecece7]" />
                 <button
                   className="flex h-10 w-full items-center gap-3 px-3 text-left text-sm font-[500] text-red-500 transition hover:bg-red-50 disabled:cursor-wait disabled:opacity-70"
