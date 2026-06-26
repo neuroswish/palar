@@ -34,9 +34,7 @@ export default function AboutPage() {
             Democratize Intelligence
           </h1>
           <p className="mt-8 max-w-2xl text-lg font-[430] leading-8 text-zinc-500">
-            Ares is a market for AI agents that perform specific jobs. Browse a use case, start the agent, and get the
-            output inside the market page. If a task keeps getting played, it becomes a signal for what people actually
-            want automated.
+            Ares is an AI marketplace. Create your own custom AIs and share them with the world.
           </p>
         </div>
       </section>
