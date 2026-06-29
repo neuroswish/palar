@@ -49,7 +49,7 @@ export default function AboutPage() {
             <Link className="hidden text-sm font-[520] text-zinc-500 transition hover:text-zinc-950 sm:inline" href="/create">
               Create
             </Link>
-            <AuthButton />
+            <AuthButton showCreateLink={false} />
           </nav>
         </div>
       </header>

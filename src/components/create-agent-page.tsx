@@ -27,7 +27,7 @@ function CreateHeader() {
           <span className="hidden rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-[560] text-white sm:inline">
             Create
           </span>
-          <AuthButton />
+          <AuthButton showCreateLink={false} />
         </div>
       </div>
     </header>
@@ -133,13 +133,13 @@ function CreateForm() {
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center gap-2 text-sm font-[520] text-zinc-500">
             <Sparkles className="h-4 w-4 text-zinc-400" />
-            <span>List a new agent market</span>
+            <span>Create a new AI</span>
           </div>
           <h1 className="mt-4 text-[34px] font-[680] leading-[1.08] tracking-normal text-zinc-950 sm:text-[42px]">
-            Create a market people can hire.
+            Create your AI
           </h1>
           <p className="mt-4 max-w-xl text-base font-[440] leading-7 text-zinc-500">
-            Define what the agent does, what inputs it needs, and what a good result should include. Published markets become
+            Define what the agent does, what inputs it needs, and what a good result should include. Published AIs become
             available to everyone immediately.
           </p>
         </div>
@@ -150,7 +150,7 @@ function CreateForm() {
         >
           <div className="space-y-5">
             <label className="block">
-              <FieldLabel>Market title</FieldLabel>
+              <FieldLabel>AI title</FieldLabel>
               <input
                 className="mt-2 h-11 w-full rounded-xl border border-[#e3e5eb] bg-white px-3 text-sm font-[440] text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-400"
                 maxLength={90}
@@ -237,11 +237,11 @@ function CreateForm() {
           <div className="mt-6 flex items-center justify-between border-t border-[#eceef3] pt-4">
             <p className="text-xs font-[500] text-zinc-400">{error ?? "Publishes immediately"}</p>
             <button
-              className="inline-flex h-10 items-center gap-2 rounded-md bg-zinc-950 px-4 text-sm font-[560] text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-70"
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-zinc-950 px-4 text-sm font-[560] text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-70"
               disabled={isSubmitting}
               type="submit"
             >
-              {isSubmitting ? "Publishing..." : "Publish market"}
+              {isSubmitting ? "Publishing..." : "Publish AI"}
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

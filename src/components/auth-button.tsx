@@ -1,41 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { usePrivy } from "@privy-io/react-auth";
-import { useWallets } from "@privy-io/react-auth/solana";
 import { Info, LogOut, Settings } from "lucide-react";
 
 import { isPrivyConfigured } from "@/components/app-providers";
-
-const SOLANA_RPC_URL = process.env.NEXT_PUBLIC_SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com";
-const USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
-
-type TokenAccountResponse = {
-  result?: {
-    value?: Array<{
-      account?: {
-        data?: {
-          parsed?: {
-            info?: {
-              tokenAmount?: {
-                uiAmountString?: string;
-              };
-            };
-          };
-        };
-      };
-    }>;
-  };
-};
-
-function formatUsdcBalance(balance: number | null) {
-  const normalizedBalance = balance ?? 0;
-  return `$${normalizedBalance.toLocaleString("en-US", {
-    maximumFractionDigits: normalizedBalance > 0 && normalizedBalance < 0.01 ? 6 : 2,
-    minimumFractionDigits: 2,
-  })}`;
-}
 
 const profileColors = [
   "bg-[#3157e8]",
@@ -55,79 +25,29 @@ function getProfileInitial(userIdentifier: string) {
   return (trimmedIdentifier[0] ?? "A").toUpperCase();
 }
 
-async function fetchUsdcBalance(address: string) {
-  const response = await fetch(SOLANA_RPC_URL, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      jsonrpc: "2.0",
-      id: "palares-usdc-balance",
-      method: "getTokenAccountsByOwner",
-      params: [address, { mint: USDC_MINT }, { encoding: "jsonParsed" }],
-    }),
-  });
+type AuthButtonProps = {
+  showCreateLink?: boolean;
+};
 
-  if (!response.ok) {
-    throw new Error("Unable to fetch USDC balance.");
-  }
-
-  const data = (await response.json()) as TokenAccountResponse;
-  const accounts = data.result?.value ?? [];
-
-  return accounts.reduce((total, account) => {
-    const amount = account.account?.data?.parsed?.info?.tokenAmount?.uiAmountString;
-    return total + (amount ? Number(amount) : 0);
-  }, 0);
-}
-
-function PrivyAuthButton() {
+function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
   const { authenticated, login, logout, ready, user } = usePrivy();
-  const { ready: walletsReady, wallets } = useWallets();
-  const [balance, setBalance] = useState<{ address: string; value: number } | null>(null);
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
-  const walletAddress = useMemo(() => {
-    const embeddedWallet = wallets.find((wallet) => wallet.standardWallet?.name === "Privy");
-    return embeddedWallet?.address ?? wallets[0]?.address;
-  }, [wallets]);
-
-  useEffect(() => {
-    if (!authenticated || !walletsReady || !walletAddress) {
-      return;
-    }
-
-    let isMounted = true;
-
-    fetchUsdcBalance(walletAddress)
-      .then((nextBalance) => {
-        if (isMounted) {
-          setBalance({ address: walletAddress, value: nextBalance });
-        }
-      })
-      .catch(() => {
-        if (isMounted) {
-          setBalance(null);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [authenticated, walletAddress, walletsReady]);
-
   if (authenticated) {
-    const displayName = user?.email?.address ?? walletAddress ?? "Ares profile";
-    const displayedBalance = balance && walletAddress && balance.address === walletAddress ? balance.value : null;
+    const displayName = user?.email?.address ?? "Ares profile";
     const profileColor = profileColors[getProfileSeed(displayName) % profileColors.length];
 
     return (
       <div className="flex items-center gap-3">
-        <span className="text-sm font-[600] text-zinc-700" title="USDC balance">
-          {formatUsdcBalance(displayedBalance)}
-        </span>
+        {showCreateLink ? (
+          <Link
+            className="rounded-full bg-blue-600 px-4 py-1.5 text-sm font-[600] text-white shadow-sm shadow-blue-600/10 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            href="/create"
+          >
+            Create
+          </Link>
+        ) : null}
         <div
           className="relative"
           onBlurCapture={(event) => {
@@ -174,7 +94,6 @@ function PrivyAuthButton() {
                     setIsSigningOut(true);
                     try {
                       await logout();
-                      setBalance(null);
                     } finally {
                       setIsSigningOut(false);
                     }
@@ -203,7 +122,7 @@ function PrivyAuthButton() {
   );
 }
 
-export function AuthButton() {
+export function AuthButton({ showCreateLink = true }: AuthButtonProps) {
   if (!isPrivyConfigured) {
     return (
       <button
@@ -216,5 +135,5 @@ export function AuthButton() {
     );
   }
 
-  return <PrivyAuthButton />;
+  return <PrivyAuthButton showCreateLink={showCreateLink} />;
 }
