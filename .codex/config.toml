@@ -1,0 +1,27 @@
+[project]
+name = "ares"
+package_manager = "bun"
+default_branch = "main"
+
+[workflow]
+default_mode = "orchestrate"
+parallelize_investigation = true
+isolate_editing = true
+centralize_merging = true
+
+[validation]
+lint = "bun lint"
+build = "bun run build"
+test = ""
+
+[git]
+auto_commit = false
+auto_push = false
+branch_prefix = "codex/"
+worktree_root = "../.worktrees"
+
+[approvals]
+commit = "explicit"
+push = "explicit"
+merge = "explicit"
+delete_worktree = "explicit"
