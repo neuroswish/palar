@@ -31,14 +31,14 @@ function slugify(value: string) {
   return slug || "market";
 }
 
-function formatPlays(playCount: number) {
+function formatUses(playCount: number) {
   if (playCount >= 1000) {
     const value = playCount / 1000;
 
-    return `${Number.isInteger(value) ? value.toFixed(0) : value.toFixed(1)}K plays`;
+    return `${Number.isInteger(value) ? value.toFixed(0) : value.toFixed(1)}K uses`;
   }
 
-  return `${playCount} plays`;
+  return `${playCount} uses`;
 }
 
 async function createUniqueSlug(baseSlug: string) {
@@ -134,7 +134,7 @@ export async function POST(request: Request) {
     description,
     category,
     price,
-    plays: formatPlays(0),
+    plays: formatUses(0),
     play_count: 0,
     accent: "from-white to-zinc-50",
     avatar: "emoji",

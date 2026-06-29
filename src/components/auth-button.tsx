@@ -3,22 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePrivy } from "@privy-io/react-auth";
-import { Info, LogOut, Settings } from "lucide-react";
+import { Info, LogOut, Plus, Settings } from "lucide-react";
 
 import { isPrivyConfigured } from "@/components/app-providers";
-
-const profileColors = [
-  "bg-[#3157e8]",
-  "bg-[#22a06b]",
-  "bg-[#d9466f]",
-  "bg-[#f59e0b]",
-  "bg-[#7c3aed]",
-  "bg-[#0891b2]",
-];
-
-function getProfileSeed(userIdentifier: string) {
-  return userIdentifier.split("").reduce((total, character) => total + character.charCodeAt(0), 0);
-}
 
 function getProfileInitial(userIdentifier: string) {
   const trimmedIdentifier = userIdentifier.trim();
@@ -36,15 +23,15 @@ function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
 
   if (authenticated) {
     const displayName = user?.email?.address ?? "Ares profile";
-    const profileColor = profileColors[getProfileSeed(displayName) % profileColors.length];
 
     return (
       <div className="flex items-center gap-3">
         {showCreateLink ? (
           <Link
-            className="rounded-full bg-blue-600 px-4 py-1.5 text-sm font-[600] text-white shadow-sm shadow-blue-600/10 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-1.5 text-sm font-[600] text-white shadow-sm shadow-blue-600/10 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
             href="/create"
           >
+            <Plus className="h-3.5 w-3.5" strokeWidth={2.25} />
             Create
           </Link>
         ) : null}
@@ -63,7 +50,7 @@ function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
         >
           <Link
             aria-label="Open profile"
-            className={`grid h-8 w-8 place-items-center rounded-full text-sm font-[650] text-white shadow-sm shadow-black/[0.08] ring-1 ring-black/[0.06] transition hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-zinc-300 ${profileColor}`}
+            className="grid h-8 w-8 place-items-center rounded-full bg-zinc-950 text-sm font-[650] text-white shadow-sm shadow-black/[0.08] ring-1 ring-black/[0.06] transition hover:scale-[1.03] hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-300"
             href="/profile"
             title={displayName}
           >

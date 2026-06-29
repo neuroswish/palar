@@ -27,11 +27,201 @@ export type Market = {
 
 const seedMarkets: Market[] = [
   {
+    name: "Hot Table Tonight",
+    slug: "hot-table-tonight",
+    description: "Score a table tonight at the best NYC restaurant you can actually get into",
+    price: "$0.025/1k tokens",
+    users: "18.4K uses",
+    category: "Food",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🍽️",
+    volume: "$842K",
+    requests: "18,432",
+    activeAgents: "41",
+    confidence: "93%",
+    brief: "Tell us your party size, time window, neighborhood, budget, and how hard you want to flex.",
+    timeline: "2-8 min",
+    examples: ["2 people after 8 in Manhattan", "best birthday dinner tonight", "walk-in friendly but impressive"],
+    deliverables: ["Ranked table options", "Reservation or walk-in strategy", "Backup picks with the same vibe"],
+  },
+  {
+    name: "Fix My Dating Profile",
+    slug: "fix-my-dating-profile",
+    description: "Get a photo ranking, bio rewrite, and openers that sound like you",
+    price: "$0.02/1k tokens",
+    users: "22.7K uses",
+    category: "Dating",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "💘",
+    volume: "$1.1M",
+    requests: "22,731",
+    activeAgents: "52",
+    confidence: "95%",
+    brief: "Upload your profile screenshots or paste your prompts, then tell us the kind of people you want to attract.",
+    timeline: "3-6 min",
+    examples: ["rank my photos", "make my Hinge less boring", "write 5 openers for my type"],
+    deliverables: ["Photo order and cut list", "Profile rewrite", "Message openers and red flags to avoid"],
+  },
+  {
+    name: "Who's Wrong?",
+    slug: "whos-wrong",
+    description: "Paste the argument and get a verdict, scorecard, and comeback options",
+    price: "$0.015/1k tokens",
+    users: "31.2K uses",
+    category: "Social",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "⚖️",
+    volume: "$1.4M",
+    requests: "31,208",
+    activeAgents: "64",
+    confidence: "92%",
+    brief: "Paste the text fight, group chat, or situation and choose whether you want fair judge, best friend, or ruthless mode.",
+    timeline: "1-2 min",
+    examples: ["who's wrong in this breakup text", "settle this roommate fight", "write my response"],
+    deliverables: ["Verdict and blame split", "Argument scorecard", "Best reply options"],
+  },
+  {
+    name: "Last-Minute Date Plan",
+    slug: "last-minute-date-plan",
+    description: "Build a full plan for tonight around your budget, neighborhood, and vibe",
+    price: "$0.02/1k tokens",
+    users: "16.9K uses",
+    category: "Dating",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🌙",
+    volume: "$704K",
+    requests: "16,941",
+    activeAgents: "37",
+    confidence: "91%",
+    brief: "Tell us where you are, when you can meet, budget, chemistry level, and whether this should feel casual or cinematic.",
+    timeline: "3-7 min",
+    examples: ["first date in West Village", "cheap but thoughtful tonight", "make this feel spontaneous"],
+    deliverables: ["Step-by-step date plan", "Reservation and walk-in strategy", "Texts to send before and after"],
+  },
+  {
+    name: "Outfit Check",
+    slug: "outfit-check",
+    description: "Upload a fit and get a score, fixes, and where you should wear it",
+    price: "$0.015/1k tokens",
+    users: "19.6K uses",
+    category: "Style",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🪞",
+    volume: "$812K",
+    requests: "19,604",
+    activeAgents: "44",
+    confidence: "94%",
+    brief: "Upload the outfit, occasion, weather, and the impression you want to make.",
+    timeline: "1-3 min",
+    examples: ["date night fit check", "wedding guest outfit", "make this look less basic"],
+    deliverables: ["Fit score", "Specific upgrade suggestions", "Occasion and confidence read"],
+  },
+  {
+    name: "Apartment Deal Checker",
+    slug: "apartment-deal-checker",
+    description: "Paste a listing and find out if it's a steal, scam, or overpriced",
+    price: "$0.025/1k tokens",
+    users: "13.8K uses",
+    category: "Real Estate",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🏠",
+    volume: "$638K",
+    requests: "13,846",
+    activeAgents: "28",
+    confidence: "89%",
+    brief: "Paste the listing, neighborhood, rent, fees, commute needs, and what you care about most.",
+    timeline: "2-5 min",
+    examples: ["is this Williamsburg studio worth it", "spot broker fee traps", "rank these 3 listings"],
+    deliverables: ["Deal verdict", "Hidden-cost checklist", "Questions to ask before touring"],
+  },
+  {
+    name: "Fantasy Trade Judge",
+    slug: "fantasy-trade-judge",
+    description: "Settle the trade with a verdict your league can argue about",
+    price: "$0.015/1k tokens",
+    users: "24.5K uses",
+    category: "Sports",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🏈",
+    volume: "$923K",
+    requests: "24,517",
+    activeAgents: "57",
+    confidence: "90%",
+    brief: "Enter the trade, league format, rosters, standings, and whether you want fair, ruthless, or chaos mode.",
+    timeline: "1-3 min",
+    examples: ["CMC for two WR2s", "is this collusion", "write the group chat verdict"],
+    deliverables: ["Trade winner", "Risk and upside breakdown", "League-ready verdict card"],
+  },
+  {
+    name: "Build My Comeback Body",
+    slug: "build-my-comeback-body",
+    description: "Get a realistic 30-day training and nutrition plan for your next era",
+    price: "$0.02/1k tokens",
+    users: "27.3K uses",
+    category: "Health & Fitness",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "💪",
+    volume: "$1.2M",
+    requests: "27,312",
+    activeAgents: "61",
+    confidence: "95%",
+    brief: "Tell us your goal, body stats, schedule, equipment, diet constraints, injuries, and what usually makes you quit.",
+    timeline: "4-8 min",
+    examples: ["look better in 30 days", "3-day gym plan", "fat loss without cooking"],
+    deliverables: ["30-day training plan", "Simple nutrition rules", "Weekly checkpoints and adjustments"],
+  },
+  {
+    name: "Roast My Landing Page",
+    slug: "roast-my-landing-page",
+    description: "Get brutally useful feedback that tells you why people aren't converting",
+    price: "$0.02/1k tokens",
+    users: "15.1K uses",
+    category: "Design",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🔥",
+    volume: "$703K",
+    requests: "15,098",
+    activeAgents: "33",
+    confidence: "94%",
+    brief: "Share your URL, screenshot, target customer, conversion goal, and how direct you want the critique to be.",
+    timeline: "3-8 min",
+    examples: ["why isn't this converting", "make my hero sharper", "rewrite this SaaS page"],
+    deliverables: ["Conversion roast", "Prioritized fixes", "Sharper copy and layout recommendations"],
+  },
+  {
+    name: "Find 50 Buyers",
+    slug: "find-50-buyers",
+    description: "Turn an idea into a list of people most likely to pay for it",
+    price: "$0.04/1k tokens",
+    users: "11.4K uses",
+    category: "Business",
+    accent: "from-white to-zinc-50",
+    avatar: "emoji",
+    emoji: "🎯",
+    volume: "$566K",
+    requests: "11,402",
+    activeAgents: "30",
+    confidence: "90%",
+    brief: "Describe what you're building, who it's for, price point, and where your buyers spend time.",
+    timeline: "5-12 min",
+    examples: ["buyers for my AI tool", "people who'd pay for this newsletter", "first 50 restaurant owners"],
+    deliverables: ["Buyer persona map", "50 lead archetypes and search paths", "First-message angles"],
+  },
+  {
     name: "Find Customers",
     slug: "find-customers",
     description: "Lead gen for your highest leverage spenders",
     price: "$0.04/1k tokens",
-    users: "3.1K plays",
+    users: "3.1K uses",
     category: "Enterprise",
     accent: "from-white to-zinc-50",
     avatar: "emoji",
@@ -50,7 +240,7 @@ const seedMarkets: Market[] = [
     slug: "election-campaign-setup",
     description: "Create assets, a marketing plan, and a website for your election campaign",
     price: "$0.03/1k tokens",
-    users: "920 plays",
+    users: "920 uses",
     category: "Politics",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -70,7 +260,7 @@ const seedMarkets: Market[] = [
     slug: "fantasy-football-betting-pool",
     description: "Create a secure portal for your friends to put money and bet on fantasy football",
     price: "$0.02/1k tokens",
-    users: "640 plays",
+    users: "640 uses",
     category: "Fun & Games",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -90,7 +280,7 @@ const seedMarkets: Market[] = [
     slug: "design-review",
     description: "Professional design feedback and implementation for your website or deck",
     price: "$0.02/1k tokens",
-    users: "1.8K plays",
+    users: "1.8K uses",
     category: "Design",
     accent: "from-white to-zinc-50",
     avatar: "emoji",
@@ -109,7 +299,7 @@ const seedMarkets: Market[] = [
     slug: "sell-my-watch",
     description: "List your watch or jewelry across all marketplaces and find the best offers",
     price: "$0.015/1k tokens",
-    users: "780 plays",
+    users: "780 uses",
     category: "Fashion",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -129,7 +319,7 @@ const seedMarkets: Market[] = [
     slug: "cheapest-knicks-tickets",
     description: "Instantly get the cheapest Knicks tickets for a particular section across all platforms",
     price: "$0.025/1k tokens",
-    users: "2.4K plays",
+    users: "2.4K uses",
     category: "Sports",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -149,7 +339,7 @@ const seedMarkets: Market[] = [
     slug: "find-new-kith-sneakers",
     description: "Search stores across NYC for new Kith inventory",
     price: "$0.001/1k tokens",
-    users: "1.2K plays",
+    users: "1.2K uses",
     category: "Shopping",
     accent: "from-white to-zinc-50",
     avatar: "image",
@@ -169,7 +359,7 @@ const seedMarkets: Market[] = [
     slug: "personal-trainer",
     description: "Get personalized guidance to meet your health and fitness goals",
     price: "$0.02/1k tokens",
-    users: "12.5K plays",
+    users: "12.5K uses",
     category: "Health & Fitness",
     accent: "from-white to-zinc-50",
     avatar: "emoji",
@@ -187,13 +377,36 @@ const seedMarkets: Market[] = [
 
 type MarketRow = Database["public"]["Tables"]["markets"]["Row"];
 
+const retiredSampleMarketSlugs = new Set([
+  "game-day-group-chat",
+  "concert-night-planner",
+  "stream-clip-finder",
+  "viral-moment-briefing",
+  "world-cup-scenario-lab",
+  "setlist-fantasy-draft",
+  "debate-arena",
+  "storyworld-generator",
+]);
+
+function normalizeUsageLabel(value: string) {
+  return value.replace(/\bplays\b/gi, "uses");
+}
+
+function appendMissingSeedMarkets(markets: Market[]) {
+  const activeMarkets = markets.filter((market) => !retiredSampleMarketSlugs.has(market.slug));
+  const existingSlugs = new Set(activeMarkets.map((market) => market.slug));
+  const missingSeedMarkets = seedMarkets.filter((market) => !existingSlugs.has(market.slug));
+
+  return [...activeMarkets, ...missingSeedMarkets];
+}
+
 function mapMarketRow(row: MarketRow): Market {
   return {
     name: row.name,
     slug: row.slug,
     description: row.description,
     price: row.price,
-    users: row.plays,
+    users: normalizeUsageLabel(row.plays),
     category: row.category,
     accent: row.accent,
     avatar: row.avatar,
@@ -228,7 +441,7 @@ export async function getMarkets() {
     throw new Error(`Failed to load markets: ${error.message}`);
   }
 
-  return data.map(mapMarketRow);
+  return appendMissingSeedMarkets(data.map(mapMarketRow));
 }
 
 export async function getMarketBySlug(slug: string) {
@@ -248,7 +461,7 @@ export async function getMarketBySlug(slug: string) {
     throw new Error(`Failed to load market: ${error.message}`);
   }
 
-  return data ? mapMarketRow(data) : null;
+  return data ? mapMarketRow(data) : seedMarkets.find((market) => market.slug === slug) ?? null;
 }
 
 export async function getMarketSlugs() {
@@ -263,5 +476,5 @@ export async function getMarketSlugs() {
     throw new Error(`Failed to load market slugs: ${error.message}`);
   }
 
-  return data.map((market) => market.slug);
+  return Array.from(new Set([...data.map((market) => market.slug), ...seedMarkets.map((market) => market.slug)]));
 }

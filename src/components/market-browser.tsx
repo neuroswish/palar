@@ -102,7 +102,7 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
   const categories = useMemo(() => {
     const marketCategories = Array.from(new Set(markets.map((market) => market.category)));
 
-    return ["All", ...marketCategories, ...testCategories];
+    return Array.from(new Set(["All", ...marketCategories, ...testCategories]));
   }, [markets]);
 
   const focusSearch = () => {
@@ -152,7 +152,7 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
 
   return (
     <main className="min-h-screen bg-white text-[#262626]">
-      <header className="fixed inset-x-0 top-0 z-10 bg-white/90 backdrop-blur">
+      <header className="fixed inset-x-0 top-0 z-10 bg-white/70 backdrop-blur-xl">
         <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center px-4 sm:px-6">
           <div className="absolute left-4 flex min-w-0 items-center gap-5 sm:left-6">
             <Link className="flex shrink-0 items-center gap-2" href="/">
@@ -170,13 +170,14 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-4 pb-3 md:hidden">
+        <div className="mx-auto w-full max-w-7xl px-4 pb-1 md:hidden">
           <MarketSearch inputRef={mobileSearchRef} query={query} setQuery={setQuery} />
         </div>
+        <div className="pointer-events-none absolute inset-x-0 top-full h-3 bg-gradient-to-b from-white/80 via-white/35 to-transparent" />
       </header>
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-[112px] sm:px-6 md:pt-16">
-        <div className="relative -mx-4 border-b border-[#ecece7] sm:-mx-6">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-[104px] sm:px-6 md:pt-16">
+        <div className="relative -mx-4 sm:-mx-6">
           <div className="overflow-x-auto px-4 py-3 [scrollbar-width:none] sm:px-6 [&::-webkit-scrollbar]:hidden">
             <div className="flex min-w-max items-center gap-1">
               {categories.map((category) => {
@@ -203,9 +204,9 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent" />
         </div>
 
-        <div className="mt-6 grid h-auto grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-6 grid h-auto grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredMarkets.map((market) => (
-            <MarketCard key={market.name} market={market} />
+            <MarketCard key={market.slug} market={market} />
           ))}
         </div>
 
