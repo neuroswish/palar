@@ -5,10 +5,11 @@ import { usePrivy } from "@privy-io/react-auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { ArrowRight, Plus, Sparkles } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 
 import { AuthButton } from "@/components/auth-button";
 import { isPrivyConfigured } from "@/components/app-providers";
+import { PrimaryNav } from "@/components/primary-nav";
 
 const categoryOptions = ["Shopping", "Sports", "Fashion", "Design", "Fun & Games", "Politics", "Enterprise"];
 const suggestedTags = ["runs on demand", "human review", "USDC-ready", "public market"];
@@ -21,13 +22,8 @@ function CreateHeader() {
           ares
         </Link>
         <div className="flex items-center gap-4">
-          <Link className="hidden text-sm font-[520] text-zinc-500 transition hover:text-zinc-950 sm:inline" href="/">
-            Markets
-          </Link>
-          <span className="hidden rounded-md bg-zinc-950 px-3 py-1.5 text-sm font-[560] text-white sm:inline">
-            Create
-          </span>
-          <AuthButton showCreateLink={false} />
+          <PrimaryNav active="create" />
+          <AuthButton />
         </div>
       </div>
     </header>
@@ -42,7 +38,7 @@ function LoginRequired() {
       <CreateHeader />
       <section className="mx-auto flex min-h-screen w-full max-w-[36.375rem] flex-col items-center justify-center px-4 pb-16 pt-24 text-center">
         <p className="text-sm font-[460] leading-5 tracking-normal text-zinc-500">
-          Log in to create an agent market on ares.
+          Log in to create an AI market on ares.
         </p>
         <button
           className="mt-4 h-9 rounded-md bg-zinc-950 px-5 text-sm font-[560] text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-70"
@@ -63,7 +59,7 @@ function DisabledLoginRequired() {
       <CreateHeader />
       <section className="mx-auto flex min-h-screen w-full max-w-[36.375rem] flex-col items-center justify-center px-4 pb-16 pt-24 text-center">
         <p className="text-sm font-[460] leading-5 tracking-normal text-zinc-500">
-          Privy is not configured yet. Add `NEXT_PUBLIC_PRIVY_APP_ID` to enable agent market creation.
+          Privy is not configured yet. Add `NEXT_PUBLIC_PRIVY_APP_ID` to enable AI market creation.
         </p>
       </section>
     </main>
@@ -131,15 +127,11 @@ function CreateForm() {
       <CreateHeader />
       <section className="mx-auto w-full max-w-3xl px-4 pb-24 pt-28 sm:px-6">
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-center gap-2 text-sm font-[520] text-zinc-500">
-            <Sparkles className="h-4 w-4 text-zinc-400" />
-            <span>Create a new AI</span>
-          </div>
-          <h1 className="mt-4 text-[34px] font-[680] leading-[1.08] tracking-normal text-zinc-950 sm:text-[42px]">
+          <h1 className="text-[34px] font-[680] leading-[1.08] tracking-normal text-zinc-950 sm:text-[42px]">
             Create your AI
           </h1>
           <p className="mt-4 max-w-xl text-base font-[440] leading-7 text-zinc-500">
-            Define what the agent does, what inputs it needs, and what a good result should include. Published AIs become
+            Define what the AI does, what inputs it needs, and what a good result should include. Published AIs become
             available to everyone immediately.
           </p>
         </div>
@@ -170,7 +162,7 @@ function CreateForm() {
                 maxLength={280}
                 minLength={10}
                 onChange={(event) => setDescription(event.target.value)}
-                placeholder="Describe the outcome a user should get from this agent."
+                placeholder="Describe the outcome a user should get from this AI."
                 required
                 value={description}
               />
@@ -206,7 +198,7 @@ function CreateForm() {
               <textarea
                 className="mt-2 min-h-28 w-full resize-none rounded-xl border border-[#e3e5eb] bg-white px-3 py-3 text-sm font-[440] leading-6 text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-400"
                 onChange={(event) => setBrief(event.target.value)}
-                placeholder="What should the agent ask for when someone starts this market?"
+                placeholder="What should this AI ask for when someone starts this market?"
                 value={brief}
               />
             </label>
@@ -268,7 +260,7 @@ function AuthenticatedCreatePage() {
   return authenticated ? <CreateForm /> : <LoginRequired />;
 }
 
-export function CreateAgentPage() {
+export function CreateAiPage() {
   if (!isPrivyConfigured) {
     return <DisabledLoginRequired />;
   }

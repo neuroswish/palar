@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { verifyAccessToken } from "@privy-io/node";
 
 import { getSupabaseServiceClient } from "@/lib/supabase/server";
@@ -110,7 +111,7 @@ export async function POST(request: Request) {
   const description = readString(input.description);
   const category = readString(input.category);
   const price = readString(input.price) || "$0";
-  const brief = readString(input.brief) || "Tell us what you want this agent to handle.";
+  const brief = readString(input.brief) || "Tell us what you want this AI to handle.";
   const creatorEmail = readString(input.creatorEmail) || null;
 
   if (name.length < 3 || name.length > 90) {
@@ -156,6 +157,8 @@ export async function POST(request: Request) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  revalidatePath("/");
 
   return NextResponse.json({ slug: data.slug });
 }

@@ -1,7 +1,7 @@
 import { MarketBrowser } from "@/components/market-browser";
 import { getMarkets } from "@/lib/markets";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function Home() {
   const markets = await getMarkets();

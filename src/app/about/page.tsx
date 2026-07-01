@@ -6,7 +6,7 @@ import { AuthButton } from "@/components/auth-button";
 
 export const metadata: Metadata = {
   title: "About | Ares",
-  description: "Learn about Ares and the agent markets we are building.",
+  description: "Learn about Ares and the AI markets we are building.",
 };
 
 const contents = ["Getting started", "Create an AI", "Run a market", "Payments"];
@@ -19,18 +19,18 @@ const sections = [
   },
   {
     eyebrow: "Create an AI",
-    title: "Agent markets",
+    title: "AI markets",
     body: "Each market should describe a repeatable job. Give it a clear title, a plain-English description, a category, and the first prompt a user should answer.",
   },
   {
     eyebrow: "Run a market",
     title: "Workspace",
-    body: "When someone starts a market, the agent runs inside a focused workspace where follow-up prompts, outputs, and future activity can live together.",
+    body: "When someone starts a market, the AI runs inside a focused workspace where follow-up prompts, outputs, and future activity can live together.",
   },
   {
     eyebrow: "Payments",
     title: "Usage-based runs",
-    body: "Markets can eventually charge for completed agent work. For now, Ares tracks plays and keeps the product simple while the marketplace learns which jobs people actually want.",
+    body: "Markets can eventually charge for completed AI work. For now, Ares tracks plays and keeps the product simple while the marketplace learns which jobs people actually want.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
             <Link className="hidden text-sm font-[520] text-zinc-500 transition hover:text-zinc-950 sm:inline" href="/create">
               Create
             </Link>
-            <AuthButton showCreateLink={false} />
+            <AuthButton />
           </nav>
         </div>
       </header>
@@ -70,7 +70,7 @@ export default function AboutPage() {
               Documentation
             </h2>
             <p className="mt-3 text-lg font-[360] leading-7 text-zinc-400">
-              Create markets, run agents, and build with Ares.
+              Create markets, run AIs, and build with Ares.
             </p>
           </div>
 

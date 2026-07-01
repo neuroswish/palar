@@ -32,7 +32,7 @@ const commentPreviews = [
   },
   {
     author: "rk",
-    text: "I like this as a quick agent, especially if the output includes links and a confidence score.",
+    text: "I like this as a quick AI, especially if the output includes links and a confidence score.",
     time: "18m",
   },
   {
@@ -52,7 +52,7 @@ const commentPreviews = [
   },
   {
     author: "ari",
-    text: "If it can remember sizing preferences and brands, this becomes a really useful repeat-use agent.",
+    text: "If it can remember sizing preferences and brands, this becomes a really useful repeat-use AI.",
     time: "5h",
   },
   {
@@ -74,7 +74,7 @@ const commentPreviews = [
 
 const dummyChatMessages = [
   {
-    side: "agent",
+    side: "ai",
     text: "I can check Kith Soho, Williamsburg, and nearby retailers that tend to carry Kith collaborations. Share your size and any colorways you care about.",
   },
   {
@@ -82,7 +82,7 @@ const dummyChatMessages = [
     text: "Size 10.5 or 11. Mainly looking for ASICS, New Balance, or Adidas collabs.",
   },
   {
-    side: "agent",
+    side: "ai",
     text: "Got it. I would prioritize stores with same-day pickup first, then widen to online inventory with NYC delivery windows under 48 hours.",
   },
   {
@@ -90,14 +90,14 @@ const dummyChatMessages = [
     text: "Budget is under $280 if possible. I can pick up in Manhattan after 5pm.",
   },
   {
-    side: "agent",
+    side: "ai",
     text: "I found three likely search paths: direct Kith product pages, nearby boutique inventory, and resale listings filtered for local pickup. Once started, I would return the strongest matches with links and pickup notes.",
   },
 ];
 
 const personalTrainerChatMessages = [
   {
-    side: "agent",
+    side: "ai",
     text: "I can build a plan around your goal, schedule, equipment, training history, and any injuries. Tell me what you want to change first.",
   },
   {
@@ -105,7 +105,7 @@ const personalTrainerChatMessages = [
     text: "I want to gain muscle, train 4 days per week, and avoid aggravating my lower back.",
   },
   {
-    side: "agent",
+    side: "ai",
     text: "Got it. I would bias toward upper/lower strength days, controlled hinge volume, core stability work, and a simple protein target before adding extra complexity.",
   },
   {
@@ -113,7 +113,7 @@ const personalTrainerChatMessages = [
     text: "I have a full gym and about 60 minutes per session. I also want two short cardio days.",
   },
   {
-    side: "agent",
+    side: "ai",
     text: "Once started, I would return a weekly plan with exercise selection, sets, reps, progression targets, recovery notes, and nutrition habits matched to your goal.",
   },
 ];
@@ -193,7 +193,7 @@ export default async function MarketPage({ params }: MarketPageProps) {
             <MarketWorkspaceScroller className="absolute inset-0 flex flex-col gap-5 overflow-y-auto overscroll-y-contain px-5 pb-32 pt-8 [scrollbar-width:none] sm:px-6 lg:px-8 [&::-webkit-scrollbar]:hidden">
               <div className="ml-1 max-w-2xl rounded-full border border-[#eef0f4] bg-[#fafafa] px-5 py-3">
                 <p className="text-sm font-[440] leading-6 text-zinc-500">
-                  Start this market and I will gather the right inputs, run the agent, and show the output here.
+                  Start this market and I will gather the right inputs, run the AI, and show the output here.
                 </p>
               </div>
 

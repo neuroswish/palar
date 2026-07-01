@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePrivy } from "@privy-io/react-auth";
-import { Info, LogOut, Plus, Settings } from "lucide-react";
+import { Info, LogOut, Settings } from "lucide-react";
 
 import { isPrivyConfigured } from "@/components/app-providers";
 
@@ -12,11 +12,7 @@ function getProfileInitial(userIdentifier: string) {
   return (trimmedIdentifier[0] ?? "A").toUpperCase();
 }
 
-type AuthButtonProps = {
-  showCreateLink?: boolean;
-};
-
-function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
+function PrivyAuthButton() {
   const { authenticated, login, logout, ready, user } = usePrivy();
   const [isSigningOut, setIsSigningOut] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -26,15 +22,6 @@ function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
 
     return (
       <div className="flex items-center gap-3">
-        {showCreateLink ? (
-          <Link
-            className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-1.5 text-sm font-[600] text-white shadow-sm shadow-blue-600/10 transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-            href="/create"
-          >
-            <Plus className="h-3.5 w-3.5" strokeWidth={2.25} />
-            Create
-          </Link>
-        ) : null}
         <div
           className="relative"
           onBlurCapture={(event) => {
@@ -100,7 +87,7 @@ function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
 
   return (
     <button
-      className="h-8 rounded-md bg-zinc-950 px-3 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-wait disabled:opacity-70"
+      className="h-8 rounded-full bg-black px-3 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-wait"
       disabled={!ready}
       onClick={() => login({ loginMethods: ["email"] })}
     >
@@ -109,11 +96,11 @@ function PrivyAuthButton({ showCreateLink = true }: AuthButtonProps) {
   );
 }
 
-export function AuthButton({ showCreateLink = true }: AuthButtonProps) {
+export function AuthButton() {
   if (!isPrivyConfigured) {
     return (
       <button
-        className="h-8 rounded-md bg-zinc-950 px-3 text-sm font-medium text-white opacity-70"
+        className="h-8 rounded-full bg-black px-3 text-sm font-medium text-white opacity-70"
         disabled
         title="Set NEXT_PUBLIC_PRIVY_APP_ID to enable Privy sign in."
       >
@@ -122,5 +109,5 @@ export function AuthButton({ showCreateLink = true }: AuthButtonProps) {
     );
   }
 
-  return <PrivyAuthButton showCreateLink={showCreateLink} />;
+  return <PrivyAuthButton />;
 }

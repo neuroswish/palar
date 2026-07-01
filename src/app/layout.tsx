@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Ares",
-  description: "An AI agent marketplace for getting work done.",
+  description: "An AI marketplace for getting work done.",
 };
 
 export default function RootLayout({

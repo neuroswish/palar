@@ -7,6 +7,7 @@ import type { RefObject } from "react";
 
 import { AuthButton } from "@/components/auth-button";
 import { MarketAvatar } from "@/components/market-avatar";
+import { PrimaryNav } from "@/components/primary-nav";
 import type { Market } from "@/lib/markets";
 
 const testCategories = [
@@ -153,19 +154,23 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
   return (
     <main className="min-h-screen bg-white text-[#262626]">
       <header className="fixed inset-x-0 top-0 z-10 bg-white/70 backdrop-blur-xl">
-        <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center px-4 sm:px-6">
-          <div className="absolute left-4 flex min-w-0 items-center gap-5 sm:left-6">
+        <div
+          className="relative mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 sm:gap-6 sm:px-6 md:grid"
+          style={{ gridTemplateColumns: "auto minmax(0, 1fr) auto" }}
+        >
+          <div className="flex min-w-0 items-center gap-5">
             <Link className="flex shrink-0 items-center gap-2" href="/">
               <span className="text-lg font-semibold tracking-normal">ares</span>
             </Link>
           </div>
           <MarketSearch
-            className="mx-auto hidden w-full max-w-[620px] md:block"
+            className="hidden min-w-0 w-full justify-self-center md:block md:max-w-[520px] lg:max-w-[620px]"
             inputRef={desktopSearchRef}
             query={query}
             setQuery={setQuery}
           />
-          <div className="absolute right-4 flex shrink-0 items-center gap-2 sm:right-6">
+          <div className="ml-auto flex shrink-0 items-center gap-4 md:ml-0">
+            <PrimaryNav active="markets" />
             <AuthButton />
           </div>
         </div>
@@ -178,7 +183,7 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-20 pt-[104px] sm:px-6 md:pt-16">
         <div className="relative -mx-4 sm:-mx-6">
-          <div className="overflow-x-auto px-4 py-3 [scrollbar-width:none] sm:px-6 [&::-webkit-scrollbar]:hidden">
+          <div className="overflow-x-auto px-4 pb-2 pt-4 [scrollbar-width:none] sm:px-6 [&::-webkit-scrollbar]:hidden">
             <div className="flex min-w-max items-center gap-1">
               {categories.map((category) => {
                 const isActive = category === activeCategory;
@@ -204,7 +209,7 @@ export function MarketBrowser({ markets }: { markets: Market[] }) {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white via-white/80 to-transparent" />
         </div>
 
-        <div className="mt-6 grid h-auto grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-3 grid h-auto grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredMarkets.map((market) => (
             <MarketCard key={market.slug} market={market} />
           ))}

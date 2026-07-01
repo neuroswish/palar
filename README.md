@@ -1,6 +1,6 @@
 ## Palar
 
-An AI marketplace for discovering and running task-focused agents.
+An AI marketplace for discovering and running task-focused AIs.
 
 ### Getting Started
 
